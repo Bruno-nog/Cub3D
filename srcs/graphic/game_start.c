@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:59:44 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/09/29 12:45:16 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:13:47 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Include/so_long.h"
+#include "cub3d.h"
 
 static void	start_image(t_game *game)
 {

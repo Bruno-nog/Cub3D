@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 15:21:33 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/04/11 21:23:10 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:14:20 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Include/so_long.h"
+#include "cub3d.h"
 
 static int	is_rectangular(char **map)
 {

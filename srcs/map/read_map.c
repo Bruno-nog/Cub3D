@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:24:19 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/04/11 20:30:39 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:14:26 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Include/so_long.h"
+#include "cub3d.h"
 
 void	read_map(t_game *game, char *path)
 {

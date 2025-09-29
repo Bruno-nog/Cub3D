@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:31:31 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/04/14 11:27:02 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:14:13 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Include/so_long.h"
+#include "cub3d.h"
 
 void	flood_fill_2(t_game *game, int x, int y)
 {

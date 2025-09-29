@@ -10,27 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h> // Para malloc e exit
-#include <stdio.h>  // Para printf (opcional, para debug)
-// Inclua o header da MiniLibX (mlx.h) e o seu header (so_long.h, etc.) aqui.
-#include "../includes/so_long.h"
-
-// Suas funções (free_mlx, exit_game, keypress, game_start) permanecem as mesmas.
-// ... (copie suas funções aqui ou garanta que elas estão no arquivo)
-
-// A função 'exit_game' deve estar definida antes de ser usada no mlx_hook.
+#include "cub3d.h"
 
 int exit_game(t_game *game)
 {
-    // ... seu código de limpeza
-    if (game && game->mlx) // Verificação de segurança
+    if (game && game->mlx)
     {
-        // Se a MiniLibX for a versão que usa mlx_destroy_display:
-        // mlx_destroy_display(game->mlx); 
-        free(game->mlx); // Aqui liberamos a memória do mlx
+        free(game->mlx);
     }
     if (game)
-        free(game); // Liberamos a memória da estrutura t_game
+        free(game);
     exit (0);
     return (0);
 }
@@ -45,35 +34,24 @@ int	keypress(int keycode, t_game *game)
 void	game_start(t_game *game)
 {
 	game->mlx = mlx_init();
-	// size_window_start(game);
-	game->win = mlx_new_window(game->mlx, 1000, 1000, "so_long");
-	// put_moves(game);
+	game->win = mlx_new_window(game->mlx, 1000, 1000, "Cub3D");
 	game->endgame = 0;
 	game->moves = 1;
-	// start_image(game);
-	// render_map(game);
 }
 
 int main()
 {
     t_game  *game;
 
-    // 1. ALOCAR MEMÓRIA PARA A ESTRUTURA t_game
     game = (t_game *)malloc(sizeof(t_game));
     if (!game)
     {
         perror("Erro na alocação de memória para game");
         return (1);
     }
-    
-    // 2. INICIAR O JOGO
-    // Inicialize os campos importantes para evitar lixo de memória
     game->mlx = NULL;
     game->win = NULL;
-    game_start(game); // Agora a função recebe um ponteiro válido
-
-    // 3. ADICIONAR HOOKS
-    // Note: O mlx_hook só deve ser chamado se game->win for válido
+    game_start(game);
     if (game->win)
     {
         mlx_hook(game->win, 2, 1L << 0, keypress, game);
@@ -81,12 +59,7 @@ int main()
         mlx_loop(game->mlx);
     }
     else
-    {
-        // Se a janela não abrir (por mlx_new_window falhar), 
-        // chamamos o exit_game para liberar a memória alocada.
         exit_game(game); 
-    }
-    
     return (0);
 }
 
