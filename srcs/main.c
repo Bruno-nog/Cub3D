@@ -3,47 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/28 18:48:27 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/28 18:48:27 by marvin           ###   ########.fr       */
+/*   Created: 2025/09/29 15:26:44 by brunogue          #+#    #+#             */
+/*   Updated: 2025/09/29 15:26:44 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+#include "mlx.h"
+
 int exit_game(t_game *game)
 {
-    if (game && game->mlx)
+    if (!game)
+        exit(0);
+    if (game->mlx && game->win)
     {
-        free(game->mlx);
+        mlx_destroy_window(game->mlx, game->win);
+        game->win = NULL;
     }
-    if (game)
-        free(game);
-    exit (0);
+    free(game);
+    exit(0);
     return (0);
 }
 
-int	keypress(int keycode, t_game *game)
+int keypress(int keycode, t_game *game)
 {
-	if (keycode == KEY_ESC || keycode == KEY_Q)
-		exit_game(game);
-	return (0);
+    if (keycode == KEY_ESC || keycode == KEY_Q)
+        exit_game(game);
+    return (0);
 }
 
-void	game_start(t_game *game)
+int keyrelease(int keycode, t_game *game)
 {
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, 1000, 1000, "Cub3D");
-	game->endgame = 0;
-	game->moves = 1;
+    (void)keycode;
+    (void)game;
+    return (0);
 }
 
-int main()
+int render_frame(t_game *game)
+{
+    (void)game;
+    return (0);
+}
+
+void game_start(t_game *game)
+{
+    game->mlx = mlx_init();
+    if (!game->mlx)
+    {
+        perror("Erro: mlx_init falhou");
+        free(game);
+        exit(1);
+    }
+    game->win = mlx_new_window(game->mlx, 1000, 1000, "Cub3D");
+    if (!game->win)
+    {
+        perror("Erro: mlx_new_window falhou");
+        free(game);
+        exit(1);
+    }
+    game->endgame = 0;
+    game->moves = 1;
+}
+
+int main(void)
 {
     t_game  *game;
 
-    game = (t_game *)malloc(sizeof(t_game));
+    game = malloc(sizeof(t_game));
     if (!game)
     {
         perror("Erro na alocação de memória para game");
@@ -52,16 +83,63 @@ int main()
     game->mlx = NULL;
     game->win = NULL;
     game_start(game);
-    if (game->win)
-    {
-        mlx_hook(game->win, 2, 1L << 0, keypress, game);
-        mlx_hook(game->win, 17, 1L << 17, exit_game, game);
-        mlx_loop(game->mlx);
-    }
-    else
-        exit_game(game); 
+    mlx_hook(game->win, 2, 1L << 0, keypress, game);
+    mlx_hook(game->win, 3, 1L << 1, keyrelease, game);
+    mlx_hook(game->win, 17, 0L, (int (*)(void *))exit_game, game);
+    mlx_loop_hook(game->mlx, render_frame, game);
+    mlx_loop(game->mlx);
     return (0);
 }
+
+
+// int exit_game(t_game *game)
+// {
+//     if (game && game->mlx)
+//         free(game->mlx);
+//     if (game)
+//         free(game);
+//     exit (0);
+//     return (0);
+// }
+
+// int	keypress(int keycode, t_game *game)
+// {
+// 	if (keycode == KEY_ESC || keycode == KEY_Q)
+// 		exit_game(game);
+// 	return (0);
+// }
+
+// void	game_start(t_game *game)
+// {
+// 	game->mlx = mlx_init();
+// 	game->win = mlx_new_window(game->mlx, 1000, 1000, "Cub3D");
+// 	game->endgame = 0;
+// 	game->moves = 1;
+// }
+
+// int main()
+// {
+//     t_game  *game;
+
+//     game = (t_game *)malloc(sizeof(t_game));
+//     if (!game)
+//     {
+//         perror("Erro na alocação de memória para game");
+//         return (1);
+//     }
+//     game->mlx = NULL;
+//     game->win = NULL;
+//     game_start(game);
+//     if (game->win)
+//     {
+//         mlx_hook(game->win, 2, 1L << 0, keypress, game);
+//         mlx_hook(game->win, 17, 1L << 17, exit_game, game);
+//         mlx_loop(game->mlx);
+//     }
+//     else
+//         exit_game(game); 
+//     return (0);
+// }
 
 
 // #include <stdio.h>

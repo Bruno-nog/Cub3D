@@ -28,7 +28,9 @@ else
     MLX_FLAGS = -Lmlx -lmlx -lX11 -lXext -lm
 endif
 
-SRCS = main.c
+SRCS = main.c 
+
+
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 vpath %.c $(SRC_DIR) $(SRC_DIR)/parser $(SRC_DIR)
