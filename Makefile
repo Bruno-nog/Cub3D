@@ -19,11 +19,9 @@ INCLUDES_DIR = includes
 LIBFT_DIR = libft
 
 CFLAGS = -Wall -Wextra -Werror -g3 -I$(INCLUDES_DIR)
-# separa libs/flags de link
 LDFLAGS =
 LDLIBS = $(LIBFT) -lreadline
 
-# MiniLibX (detecta sistema)
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
     MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
@@ -34,7 +32,7 @@ endif
 SRCS = main.c
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
-vpath %.c $(SRC_DIR) $(SRC_DIR)/parser $(SRC_DIR)/...
+vpath %.c $(SRC_DIR) $(SRC_DIR)/parser $(SRC_DIR)
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
@@ -44,7 +42,7 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(LDFLAGS) $(OBJ) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(LDFLAGS) $(OBJ) $(LDLIBS) $(MLX_FLAGS)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)

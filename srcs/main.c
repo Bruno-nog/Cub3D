@@ -14,5 +14,5 @@
 
 int main ()
 {
-    printf("skdfskj");
+    printf("skdfskjasd\n");
 }
