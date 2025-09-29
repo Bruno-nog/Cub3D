@@ -19,7 +19,6 @@ INCLUDES_DIR = includes
 LIBFT_DIR = libft
 
 CFLAGS = -Wall -Wextra -Werror -g3 -I$(INCLUDES_DIR)
-LDFLAGS =
 LDLIBS = $(LIBFT) -lreadline
 
 UNAME_S := $(shell uname -s)
@@ -29,7 +28,7 @@ else
     MLX_FLAGS = -Lmlx -lmlx -lX11 -lXext -lm
 endif
 
-SRCS = main.c 
+SRCS = main.c
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 vpath %.c $(SRC_DIR) $(SRC_DIR)/parser $(SRC_DIR)
@@ -42,7 +41,7 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(LDFLAGS) $(OBJ) $(LDLIBS) $(MLX_FLAGS)
+	$(CC) $(LDFLAGS) $(OBJ) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
