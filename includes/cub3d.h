@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/09/29 15:59:30 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:11:20 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ typedef struct s_game
 	int		img_h;
 	int		img_victory_w;
 	int		img_victory_h;
-	int		n_colect;
-	int		n_player;
-	int		n_exit;
-	int		x_player;
-	int		y_player;
+	int		player_dir;
+	int		map_width;
+	int		map_height;
+	int		player_y;
+	int		player_x;
 	int		moves;
 	int		endgame;
 }	t_game;
@@ -66,7 +66,7 @@ void	flood_fill_2(t_game *game, int x, int y);
 void	find_player_position(t_game *game, int *x, int *y);
 
 //GRAPHIC
-int		render_map(t_game *game);
+int		render_frame(t_game *game);
 void	game_start(t_game *game);
 
 //GAME

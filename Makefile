@@ -28,7 +28,7 @@ else
     MLX_FLAGS = -Lmlx -lmlx -lX11 -lXext -lm
 endif
 
-SRCS = main.c map/read_map.c
+SRCS = main.c map/read_map.c 
 
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
