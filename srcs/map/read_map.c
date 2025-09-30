@@ -6,11 +6,12 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 15:27:09 by brunogue          #+#    #+#             */
-/*   Updated: 2025/09/29 15:27:11 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/09/30 15:03:18 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 void	read_map(t_game *game, char *path)
 {
@@ -21,7 +22,7 @@ void	read_map(t_game *game, char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		print_error("File error or empty");
+		printf("File error or empty");
 	holder_map = ft_strdup("");
 	while (1)
 	{

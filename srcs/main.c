@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include "mlx.h"
@@ -70,8 +69,9 @@ void game_start(t_game *game)
     game->moves = 1;
 }
 
-int main(void)
+int main(int ac, char **path)
 {
+    (void)ac;
     t_game  *game;
 
     game = malloc(sizeof(t_game));
@@ -88,6 +88,8 @@ int main(void)
     mlx_hook(game->win, 17, 0L, (int (*)(void *))exit_game, game);
     mlx_loop_hook(game->mlx, render_frame, game);
     mlx_loop(game->mlx);
+    read_map(game, *path);
+
     return (0);
 }
 
