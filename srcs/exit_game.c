@@ -1,34 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 17:27:26 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 16:13:47 by ratanaka         ###   ########.fr       */
+/*   Created: 2025/10/01 16:25:27 by ratanaka          #+#    #+#             */
+/*   Updated: 2025/10/01 16:38:55 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_global	*gg(void)
-{
-	static t_global	global;
+// void	free_map(char **map)
+// {
+// 	int	i;
 
-	return (&global);
+// 	i = 0;
+// 	if (!map)
+// 		return ;
+// 	while (map[i])
+// 	{
+// 		free(map[i]);
+// 		i++;
+// 	}
+// 	free(map);
+// }
+
+static void	free_mlx(t_game *game)
+{
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
 }
 
-int	main(void)
+int	exit_game(t_game *game)
 {
-	t_game	game;
-
-	init_game(&game);
-	gg()->game = game;
-	init_player(&game.player);
-	mlx_hook(game.win, 2, 1L << 0, key_press, &game.player);
-	mlx_hook(game.win, 3, 1L << 1, key_release, &game.player);
-	mlx_loop_hook(game.mlx, draw_loop, &game);
-	mlx_loop(game.mlx);
+	if (game->img)
+		mlx_destroy_image(game->mlx, game->img);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+		free_mlx(game);
+	exit (0);
 	return (0);
 }
