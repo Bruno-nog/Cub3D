@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 12:00:40 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/01 15:13:48 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,13 @@ typedef struct s_game
 # define WIDTH 1280
 # define HEIGHT 720
 # define BLOCK 64
+# define DEBUG 0
 
 void	init_player(t_player *player);
 void	move_player(t_player *player);
 int		key_press(int keycode, t_player *player);
 int		key_release(int keycode, t_player *player);
+char **read_map(const char *path);
 
 
 #endif
