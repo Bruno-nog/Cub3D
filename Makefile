@@ -28,7 +28,12 @@ else
     MLX_FLAGS = -Lmlx -lmlx -lX11 -lXext -lm
 endif
 
-SRCS = main.c player.c
+SRCS = main.c \
+	 player.c \
+	 raycast/distance.c \
+	 raycast/raycast.c \
+	 raycast/draws.c \
+	 exit_game.c
 
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
