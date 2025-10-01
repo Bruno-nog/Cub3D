@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:27:26 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 10:58:35 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/01 12:10:08 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <math.h>
 
 void	put_pixel(int x, int y, int color, t_game *game)
 {
@@ -113,14 +114,15 @@ void	init_game(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
-bool	touch(float px, float py, t_game *game)
-{
-	int	x;
-	int	y;
+// bool	touch(float px, float py, t_game *game)
+// {
+//     (void)game;
+// 	int	x;
+// 	int	y;
 
-	x = px / BLOCK;
-	y = py / BLOCK;
-}
+// 	x = px / BLOCK;
+// 	y = py / BLOCK;
+// }
 
 int	draw_loop(t_game *game)
 {
@@ -144,10 +146,17 @@ int	draw_loop(t_game *game)
 	return (0);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	t_game	game;
+    (void)av;
 
+    if (ac == 1)
+    {
+        perror("Missing argument: ./cub3d <maps/file.cub>");
+        return (0);
+    }
+	t_game	game;
+    // parse_map(&game);
 	init_game(&game);
 	mlx_hook(game.win, 2, 1L<<0, key_press, &game.player);
 	mlx_hook(game.win, 3, 1L<<1, key_release, &game.player);
