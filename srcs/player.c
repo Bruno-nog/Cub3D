@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 10:53:40 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/01 12:15:53 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	key_release(int keycode, t_player *player)
 }
 
 static void	player_angle(t_player *player,
-	float cos_angle, float sin_angle, int speed)
+	float cos_angle, float sin_angle, float speed)
 {
 	if (player->key_up)
 	{
@@ -76,25 +76,25 @@ static void	player_angle(t_player *player,
 	}
 	if (player->key_left)
 	{
-		player->x += cos_angle * speed;
-		player->y -= sin_angle * speed;
+		player->x += sin_angle * speed;
+		player->y -= cos_angle * speed;
 	}
 	if (player->key_right)
 	{
-		player->x -= cos_angle * speed;
-		player->y += sin_angle * speed;
+		player->x -= sin_angle * speed;
+		player->y += cos_angle * speed;
 	}
 }
 
 void	move_player(t_player *player)
 {
-	int		speed;
+	float	speed;
 	float	angle_speed;
 	float	cos_angle;
 	float	sin_angle;
 
-	speed = 5;
-	angle_speed = 0.1;
+	speed = 0.4;
+	angle_speed = 0.01;
 	cos_angle = cos(player->angle);
 	sin_angle = sin(player->angle);
 	if (player->left_rotate)

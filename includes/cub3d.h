@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 10:40:53 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/01 12:32:52 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_game
 # define WIDTH 1280
 # define HEIGHT 720
 # define BLOCK 64
+# define DEBUG 0
 
 void	init_player(t_player *player);
 void	move_player(t_player *player);
