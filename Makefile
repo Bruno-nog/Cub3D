@@ -28,7 +28,8 @@ else
     MLX_FLAGS = -Lmlx -lmlx -lX11 -lXext -lm
 endif
 
-SRCS = main.c player.c
+SRCS = main.c player.c exit_game.c\
+raycast/raycast.c raycast/draws.c raycast/distance.c
 
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
@@ -38,6 +39,8 @@ vpath %.c $(SRC_DIR) $(SRC_DIR)/parser $(SRC_DIR)
 LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(LIBFT) $(NAME)
+
+val: valgrind --leak-check=full --show-leak-kinds=all ./cub3d
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)

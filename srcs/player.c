@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 12:15:53 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/01 16:28:08 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void	init_player(t_player *player)
 	player->x = WIDTH / 2;
 	player->y = HEIGHT / 2;
 	player->angle = PI / 2;
-
 	player->key_up = false;
 	player->key_down = false;
 	player->key_right = false;
 	player->key_left = false;
-
 	player->left_rotate = false;
 	player->right_rotate = false;
 }
 
 int	key_press(int keycode, t_player *player)
 {
+	if (keycode == KEY_ESC)
+		exit_game(&gg()->game);
 	if (keycode == W)
 		player->key_up = true;
 	if (keycode == S)

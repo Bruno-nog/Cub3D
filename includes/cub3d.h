@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 12:32:52 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/01 16:35:07 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,20 @@ typedef struct s_game
 
 }	t_game;
 
+typedef struct s_global
+{
+	float	x1;
+	char	**map;
+	t_game	game;
+}	t_global;
+
 # define W 119
 # define A 97
 # define S 115
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
+# define KEY_ESC 65307
 
 # define PI 3.14159265359
 
@@ -66,19 +74,31 @@ typedef struct s_game
 # define BLOCK 64
 # define DEBUG 0
 
-void	init_player(t_player *player);
-void	move_player(t_player *player);
-int		key_press(int keycode, t_player *player);
-int		key_release(int keycode, t_player *player);
+t_global	*gg(void);
+void		init_game(t_game *game);
+void		init_player(t_player *player);
+void		move_player(t_player *player);
+int			key_press(int keycode, t_player *player);
+int			key_release(int keycode, t_player *player);
+int			exit_game(t_game *game);
+
+// -------draw.c-------- //
+
+int			draw_loop(t_game *game);
+void		draw_line(t_player *player, t_game *game, float start_x, int i);
+void		draw_map(t_game *game);
+void		draw_square(int x, int y, int size, int color);
 
 
+// -------raycast.c-------- //
 
-
-
-
-
-
-
+void		put_pixel(int x, int y, int color, t_game *game);
+void		clear_image(t_game *game);
+char		**get_map(void);
+void		init_game(t_game *game);
+bool		touch(float px, float py, t_game *game);
+float		distance(float x, float y);
+float		fixed_dist(float y1, float x2, float y2, t_game *game);
 
 
 
@@ -117,7 +137,6 @@ typedef struct s_game1
 	int		endgame;
 }	t_game1;
 
-# define KEY_ESC 65307
 # define KEY_Q 113
 
 # define KEY_W 119
@@ -149,7 +168,7 @@ void	put_moves(t_game *game);
 //FREE_EXIT
 void	print_error(char	*str);
 void	free_map(char **map);
-int		exit_game(t_game *game);
+// int		exit_game(t_game *game);
 
 //CHECKERS
 int		map_checker(t_game *game);
