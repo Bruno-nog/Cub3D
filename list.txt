@@ -26,3 +26,5 @@
 |            Pessoa A | Mapeamento de texturas (carregar XPM), mapping de texcoords                                            | Texturas aparecem nas paredes                                |
 |            Pessoa B | Sprites , ordenação por distância                                                                      | Sprites aparecem e oculpam por trás das paredes corretamente |
 |               Ambos | Otimizações, ajustes de FOV, iluminação (lanterna/fog), polish (HUD)                                   | Jogável, 60fps tolerável no mapa de teste                    |
+
+

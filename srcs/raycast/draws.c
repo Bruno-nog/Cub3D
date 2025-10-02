@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draws.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 13:21:23 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 15:53:28 by ratanaka         ###   ########.fr       */
+/*   Created: 2025/10/01 17:42:22 by brunogue          #+#    #+#             */
+/*   Updated: 2025/10/01 18:41:20 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
+#include <math.h>
 
 void	draw_square(int x, int y, int size, int color)
 {
@@ -53,8 +54,7 @@ void	draw_map(t_game *game)
 	}
 }
 
-static void	draw_vision(t_game *game,
-	float ray_x, float ray_y, int i)
+void	draw_vision(t_game *game, float ray_x, float ray_y, int i)
 {
 	float	dist;
 	float	height;
@@ -95,30 +95,3 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 		draw_vision(game, ray_x, ray_y, i);
 }
 
-int	draw_loop(t_game *game)
-{
-	t_player	*player;
-	float		fraction;
-	float		start_x;
-	int			i;
-
-	player = &game->player;
-	move_player(player);
-	clear_image(game);
-	if (DEBUG)
-	{
-		draw_square(player->x, player->y, 10, 0x00FF00);
-		draw_map(game);
-	}
-	fraction = PI / 3 / WIDTH;
-	start_x = player->angle - PI / 6;
-	i = 0;
-	while (i < WIDTH)
-	{
-		draw_line(player, game, start_x, i);
-		start_x += fraction;
-		i++;
-	}
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	return (0);
-}

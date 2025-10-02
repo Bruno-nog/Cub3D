@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 16:25:27 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 16:38:55 by ratanaka         ###   ########.fr       */
+/*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
+/*   Updated: 2025/10/01 18:42:14 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// void	free_map(char **map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!map)
-// 		return ;
-// 	while (map[i])
-// 	{
-// 		free(map[i]);
-// 		i++;
-// 	}
-// 	free(map);
-// }
 
 static void	free_mlx(t_game *game)
 {
