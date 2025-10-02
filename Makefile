@@ -28,7 +28,7 @@ else
     MLX_FLAGS = -Lmlx -lmlx -lX11 -lXext -lm
 endif
 
-SRCS = main.c player.c exit_game.c\
+SRCS = main.c player.c exit_game.c \
 raycast/raycast.c raycast/draws.c raycast/distance.c
 
 
