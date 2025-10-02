@@ -28,12 +28,17 @@ void	clear_image(t_game *game)
 	int	x;
 
 	y = 0;
+	game->ceiling = 0x0AD2FA;
+	game->floor = 0x00BB00;
 	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
 		{
-			put_pixel(x, y, 0, game);
+			if (y < HEIGHT / 2)
+				put_pixel(x, y, game->ceiling, game);
+			else
+				put_pixel(x, y, game->floor, game);
 			x++;
 		}
 		y++;
