@@ -33,7 +33,8 @@ SRCS = main.c \
 	 raycast/distance.c \
 	 raycast/raycast.c \
 	 raycast/draws.c \
-	 exit_game.c
+	 exit_game.c \
+	 parser/main_parse.c
 
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))

@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 18:51:15 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/02 12:21:05 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		clear_image(t_game *game);
 void		put_pixel(int x, int y, int color, t_game *game);
 float		fixed_dist(float y1, float x2, float y2, t_game *game);
 bool		touch(float px, float py, t_game *game);
+bool	    main_parser(char *av);
 
 // GRAPHIC
 

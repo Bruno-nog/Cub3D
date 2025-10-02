@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/01 18:51:04 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:53:58 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	void		*img;
-
 	char		*data;
 	int			bpp;
 	int			size_line;
 	int			endian;
-
 	char		**map;
 	t_player	player;
 
