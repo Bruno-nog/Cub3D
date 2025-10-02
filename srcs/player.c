@@ -6,11 +6,12 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 16:28:08 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:01:34 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <math.h>
 
 void	init_player(t_player *player)
 {
@@ -76,13 +77,13 @@ static void	player_angle(t_player *player,
 	}
 	if (player->key_left)
 	{
-		player->x += sin_angle * speed;
-		player->y -= cos_angle * speed;
+		player->x += sin_angle * (speed / 2.5);
+		player->y -= cos_angle * (speed / 2.5);
 	}
 	if (player->key_right)
 	{
-		player->x -= sin_angle * speed;
-		player->y += cos_angle * speed;
+		player->x -= sin_angle * (speed / 2.5);
+		player->y += cos_angle * (speed / 2.5);
 	}
 }
 
@@ -93,7 +94,7 @@ void	move_player(t_player *player)
 	float	cos_angle;
 	float	sin_angle;
 
-	speed = 0.4;
+	speed = 1;
 	angle_speed = 0.01;
 	cos_angle = cos(player->angle);
 	sin_angle = sin(player->angle);

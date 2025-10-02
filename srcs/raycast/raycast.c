@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 13:04:40 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 16:38:45 by ratanaka         ###   ########.fr       */
+/*   Created: 2025/10/01 17:43:08 by brunogue          #+#    #+#             */
+/*   Updated: 2025/10/01 18:41:47 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	put_pixel(int x, int y, int color, t_game *game)
 {
@@ -30,42 +28,83 @@ void	clear_image(t_game *game)
 	int	x;
 
 	y = 0;
+	game->ceiling = 0x0AD2FA;
+	game->floor = 0x00BB00;
 	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
 		{
-			put_pixel(x, y, 0, game);
+			if (y < HEIGHT / 2)
+				put_pixel(x, y, game->ceiling, game);
+			else
+				put_pixel(x, y, game->floor, game);
 			x++;
 		}
 		y++;
 	}
 }
 
-char	**get_map(void)
+static char *dup_line_no_newline(const char *s)
 {
-	char	**map;
-
-	map = malloc(sizeof(char *) * 11);
-	map[0] = "111111111111111";
-	map[1] = "100000000000001";
-	map[2] = "100000000000001";
-	map[3] = "100000100000001";
-	map[4] = "100000000000001";
-	map[5] = "100000010000001";
-	map[6] = "100001000000001";
-	map[7] = "100000000000001";
-	map[8] = "100000000000001";
-	map[9] = "111111111111111";
-	map[10] = NULL;
-	return (map);
+    size_t len = ft_strlen(s);
+    if (len > 0 && s[len - 1] == '\n')
+        len--;
+    char *copy = malloc(len + 1);
+    if (!copy)
+        return NULL;
+    ft_memcpy(copy, s, len);
+    copy[len] = '\0';
+    return copy;
 }
 
-void	init_game(t_game *game)
+char **read_map(const char *path)
+{
+    int     fd;
+    char    *line;
+    char    **map = NULL;
+    size_t  count = 0;
+    char    **tmp;
+    char    *clean;
+
+    fd = open(path, O_RDONLY);
+    if (fd < 0)
+    {
+        perror("open");
+        return NULL;
+    }
+    while ((line = get_next_line(fd)))
+    {
+        clean = dup_line_no_newline(line);
+        free(line);
+        if (!clean)
+        {
+            perror("malloc/strdup");
+            // free_map(map);
+            close(fd);
+            return NULL;
+        }
+        tmp = realloc(map, sizeof(char *) * (count + 2));
+        if (!tmp)
+        {
+            perror("realloc");
+            free(clean);
+            // free_map(map);
+            close(fd);
+            return NULL;
+        }
+        map = tmp;
+        map[count++] = clean;
+        map[count] = NULL;
+    }
+    close(fd);
+    return map;
+}
+
+void	init_game(t_game *game, char *av)
 {
 	game->mlx = mlx_init();
-	// colocar minha inplemenatacoa
-	game->map = get_map();
+	game->map = read_map(av);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Game");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp,

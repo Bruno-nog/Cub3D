@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 16:21:55 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 16:22:22 by ratanaka         ###   ########.fr       */
+/*   Created: 2025/10/01 17:41:51 by brunogue          #+#    #+#             */
+/*   Updated: 2025/10/01 18:41:10 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
+#include <math.h>
 
 float	distance(float x, float y)
 {
