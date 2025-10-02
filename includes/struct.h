@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/01 18:53:58 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:59:03 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ typedef struct s_game
 	t_player	player;
 
 }	t_game;
+
+typedef struct s_textures
+{
+	
+}	t_textures;
 
 typedef struct s_global
 {
