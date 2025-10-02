@@ -55,12 +55,16 @@ int	draw_loop(t_game *game)
 int	main(int ac, char **av)
 {
 	t_game	game;
+	bool is_cub;
 
 	if (ac == 1)
 	{
-		printf("Missing arguments\n");
+		printf("ERROR: Missing arguments\n");
 		return (0);
 	}
+	is_cub = main_parser(av[1]);
+	if (!is_cub)
+		return (0);
 	init_game(&game, av[1]);
 	gg()->game = game;
 	init_player(&game.player);
