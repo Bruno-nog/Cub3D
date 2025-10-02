@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/01 18:51:15 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:05:45 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		init_player(t_player *player);
 void		move_player(t_player *player);
 int			key_press(int keycode, t_player *player);
 int			key_release(int keycode, t_player *player);
-char 		**read_map(const char *path);
+char		**read_map(const char *path);
 int			exit_game(t_game *game);
 void		init_game(t_game *game, char *av);
 

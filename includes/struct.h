@@ -3,17 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/01 18:51:04 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/02 14:44:24 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-#include <stdbool.h>
+# include <stdbool.h>
+
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_texture;
 
 typedef struct s_player
 {
@@ -41,9 +52,12 @@ typedef struct s_game
 	int			size_line;
 	int			endian;
 
+	int			floor;
+	int			ceiling;
+	t_texture	texture[4];
+
 	char		**map;
 	t_player	player;
-
 }	t_game;
 
 typedef struct s_global
