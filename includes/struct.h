@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/02 14:44:24 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/06 17:31:56 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_game
 	int			floor;
 	int			ceiling;
 	t_texture	texture[4];
+	float		**vignette_map;
 
 	char		**map;
 	t_player	player;
