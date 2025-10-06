@@ -45,17 +45,103 @@ void	clear_image(t_game *game)
 	}
 }
 
+// static char *dup_line_no_newline(char *s)
+// {
+//     size_t	len;
+//     char	*copy;
+
+// 	len = ft_strlen(s);
+//     copy = m.alloc(len + 1);
+//     if (!copy)
+// 	{
+// 		free(copy);
+//         return NULL;
+// 	}
+//     if (len > 0 && s[len - 1] == '\n')
+//         len--;
+//     ft_memcpy(copy, s, len);
+//     copy[len] = '\0';
+//     return copy;
+// }
+
+// char **read_map(const char *path)
+// {
+//     int     fd;
+//     char    *line;
+//     char    **map = NULL;
+//     size_t  count = 0;
+//     char    **tmp;
+//     char    *clean;
+
+//     fd = open(path, O_RDONLY);
+//     if (fd < 0)
+//     {
+//         perror("open");
+//         return NULL;
+//     }
+//     while ((line = get_next_line(fd)))
+//     {
+//         clean = dup_line_no_newline(line);
+// 		if (clean)
+// 	        free(line);
+//         if (!clean)
+//         {
+//             perror("malloc/strdup");
+//             // free_map(map);
+//             close(fd);
+//             return NULL;
+//         }
+//         tmp = realloc(map, sizeof(char *) * (count + 2));
+//         if (!tmp)
+//         {
+//             perror("realloc");
+//             free(clean);
+//             // free_map(map);
+//             close(fd);
+//             return NULL;
+//         }
+//         map = tmp;
+//         map[count++] = clean;
+//         map[count] = NULL;
+//     }
+//     close(fd);
+//     return map;
+// }
+
 static char *dup_line_no_newline(const char *s)
 {
-    size_t len = ft_strlen(s);
+    size_t orig_len;
+    size_t len;
+    char *copy;
+
+    if (!s)
+        return NULL;
+    orig_len = ft_strlen(s);
+    len = orig_len;
     if (len > 0 && s[len - 1] == '\n')
         len--;
-    char *copy = malloc(len + 1);
+    copy = malloc(len + 1);
     if (!copy)
         return NULL;
-    ft_memcpy(copy, s, len);
+    if (len > 0)
+        ft_memcpy(copy, s, len);
     copy[len] = '\0';
     return copy;
+}
+
+static void free_map(char **map)
+{
+    size_t i;
+
+    if (!map)
+        return;
+    i = 0;
+    while (map[i])
+    {
+        free(map[i]);
+        i++;
+    }
+    free(map);
 }
 
 char **read_map(const char *path)
@@ -64,8 +150,9 @@ char **read_map(const char *path)
     char    *line;
     char    **map = NULL;
     size_t  count = 0;
-    char    **tmp;
+    char    **new_map;
     char    *clean;
+    size_t  i;
 
     fd = open(path, O_RDONLY);
     if (fd < 0)
@@ -80,26 +167,35 @@ char **read_map(const char *path)
         if (!clean)
         {
             perror("malloc/strdup");
-            // free_map(map);
+            free_map(map);
             close(fd);
             return NULL;
         }
-        tmp = realloc(map, sizeof(char *) * (count + 2));
-        if (!tmp)
+        new_map = malloc((count + 2) * sizeof(char *));
+        if (!new_map)
         {
-            perror("realloc");
+            perror("malloc");
             free(clean);
-            // free_map(map);
+            free_map(map);
             close(fd);
             return NULL;
         }
-        map = tmp;
-        map[count++] = clean;
-        map[count] = NULL;
+        i = 0;
+        while (i < count)
+        {
+            new_map[i] = map[i];
+            i++;
+        }
+        new_map[count] = clean;
+        new_map[count + 1] = NULL;
+        free(map);
+        map = new_map;
+        count++;
     }
     close(fd);
     return map;
 }
+
 
 void	init_game(t_game *game, char *av)
 {

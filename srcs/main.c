@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 
 	if (ac == 1)
 	{
-		printf("ERROR: Missing arguments\n");
+		ft_printf("ERROR: Missing arguments\n");
 		return (0);
 	}
 	is_cub = main_parser(av[1]);

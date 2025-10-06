@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
 NAME = cub3d
+CC = cc
 
 SRC_DIR = srcs
 OBJ_DIR = obj
@@ -39,13 +39,17 @@ SRCS = main.c \
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
+# no topo (ou onde preferir)
+MAP ?= maps/crazy8.cub
+
+
 vpath %.c $(SRC_DIR) $(SRC_DIR)/parser $(SRC_DIR)
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(LIBFT) $(NAME)
 
-val: valgrind --leak-check=full --show-leak-kinds=all ./cub3d
+# val: valgrind --leak-check=full --show-leak-kinds=all ./cub3d
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
@@ -65,8 +69,22 @@ fclean: clean
 	rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
 
-valgrind:
-	-$(VALGRIND) ./$(NAME)
+# valgrind:
+# 	-$(VALGRIND) ./$(NAME)
+
+val: all
+	valgrind -q --leak-check=full --show-leak-kinds=all ./$(NAME) $(MAP)
+
+valgrind: all
+	@/bin/valgrind -q \
+				--leak-check=full \
+				--show-leak-kinds=all \
+				--track-origins=yes \
+				--track-fds=yes \
+				--trace-children=yes \
+				--trace-children-skip='*/bin/*,*/sbin/*,/usr/bin/*' \
+				./${NAME}
+
 
 re: fclean all
 
