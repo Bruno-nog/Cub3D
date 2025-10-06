@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/06 16:36:20 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:16:01 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "struct.h"
+# include <math.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 
@@ -49,6 +50,8 @@ void		put_pixel(int x, int y, int color, t_game *game);
 float		fixed_dist(float y1, float x2, float y2, t_game *game);
 bool		touch(float px, float py, t_game *game);
 bool	    main_parser(char *av);
+void		load_all_textures(t_game *game);
+void		init_vignette(t_game *game);
 
 // GRAPHIC
 
