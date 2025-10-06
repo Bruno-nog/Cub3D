@@ -65,7 +65,8 @@ int	main(int ac, char **av)
 	is_cub = main_parser(av[1]);
 	if (!is_cub)
 		return (0);
-	init_game(&game, av[1]);
+	if (!init_game(&game, av[1]))
+		return (0);
 	gg()->game = game;
 	init_player(&game.player);
 	mlx_hook(game.win, 2, 1L<<0, key_press, &game.player);

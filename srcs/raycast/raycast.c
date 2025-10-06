@@ -197,15 +197,20 @@ char **read_map(const char *path)
 }
 
 
-void	init_game(t_game *game, char *av)
+bool	init_game(t_game *game, char *av)
 {
 	game->mlx = mlx_init();
 	game->map = read_map(av);
+    if (game->map == NULL)
+	{
+        return (false);
+	}
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp,
 			&game->size_line, &game->endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+    return (true);
 }
 
 bool	touch(float px, float py, t_game *game)
