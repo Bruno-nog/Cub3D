@@ -196,15 +196,12 @@ char **read_map(const char *path)
     return map;
 }
 
-
 bool	init_game(t_game *game, char *av)
 {
 	game->mlx = mlx_init();
 	game->map = read_map(av);
-    if (game->map == NULL)
-	{
-        return (false);
-	}
+	if (game->map == NULL)
+		return (false);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp,

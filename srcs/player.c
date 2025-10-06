@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/02 15:01:34 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/06 17:17:25 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ static void	player_angle(t_player *player,
 	}
 	if (player->key_left)
 	{
-		player->x += sin_angle * (speed / 2.5);
-		player->y -= cos_angle * (speed / 2.5);
+		player->x += sin_angle * (speed);
+		player->y -= cos_angle * (speed);
 	}
 	if (player->key_right)
 	{
-		player->x -= sin_angle * (speed / 2.5);
-		player->y += cos_angle * (speed / 2.5);
+		player->x -= sin_angle * (speed);
+		player->y += cos_angle * (speed);
 	}
 }
 

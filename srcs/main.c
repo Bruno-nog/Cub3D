@@ -55,7 +55,7 @@ int	draw_loop(t_game *game)
 int	main(int ac, char **av)
 {
 	t_game	game;
-	bool is_cub;
+	bool	is_cub;
 
 	if (ac == 1)
 	{
