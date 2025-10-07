@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/29 15:27:17 by brunogue          #+#    #+#             */
-/*   Updated: 2025/09/29 15:27:19 by brunogue         ###   ########.fr       */
+/*   Created: 2025/10/01 17:49:33 by brunogue          #+#    #+#             */
+/*   Updated: 2025/10/01 18:41:01 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	game_start(t_game *game)
 	put_moves(game);
 	game->endgame = 0;
 	game->moves = 1;
-	// start_image(game);
-	// render_map(game);
 }
+
+// start_image(game);
+// render_map(game);

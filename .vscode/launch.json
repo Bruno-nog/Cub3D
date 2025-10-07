@@ -8,8 +8,13 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
+<<<<<<< HEAD
       "cwd": "/nfs/homes/ratanaka/42_SP/Milestones/Milestone_4/Cub3D/srcs/raycast",
       "program": "/nfs/homes/ratanaka/42_SP/Milestones/Milestone_4/Cub3D/srcs/raycast/build/Debug/outDebug",
+=======
+      "cwd": "/nfs/homes/ratanaka/42_SP/Milestones/Milestone_4/Cub3D/srcs",
+      "program": "/nfs/homes/ratanaka/42_SP/Milestones/Milestone_4/Cub3D/srcs/build/Debug/outDebug",
+>>>>>>> player_mov
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
