@@ -47,10 +47,9 @@ void	init_vignette(t_game *game)
 	while (y < HEIGHT)
 	{
 		game->vignette_map[y] = malloc(sizeof(float) * WIDTH);
-		// Adicione uma verificação de erro para o malloc!
 		y++;
 	}
-	max_dist = WIDTH * 0.3;
+	max_dist = WIDTH * 0.4;
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -101,10 +100,10 @@ void	clear_image(t_game *game)
 
 	y = 0;
 	// game->ceiling = 0x0AD2FA;
-	// game->floor = 0xA8A8A8;
+	game->floor = 0x170404;
 	// game->ceiling = 0x0F0F0F;
 	game->ceiling = 0x050547;
-	game->floor = 0x3A3A3A;
+	// game->floor = 0x1A0707;
 	while (y < HEIGHT)
 	{
 		x = 0;
