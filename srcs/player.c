@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/07 15:14:17 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:02:11 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ static void	player_angle(t_player *player,
 	}
 	if (player->key_left)
 	{
-		player->x += sin_angle * (speed / 2.5);
-		player->y -= cos_angle * (speed / 2.5);
+		player->x += sin_angle * (speed);
+		player->y -= cos_angle * (speed);
 	}
 	if (player->key_right)
 	{
-		player->x -= sin_angle * (speed / 2.5);
-		player->y += cos_angle * (speed / 2.5);
+		player->x -= sin_angle * (speed);
+		player->y += cos_angle * (speed);
 	}
 }
 

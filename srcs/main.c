@@ -55,19 +55,25 @@ int	draw_loop(t_game *game)
 int	main(int ac, char **av)
 {
 	t_game	game;
+	bool	is_cub;
 
 	if (ac == 1)
 	{
-		printf("Missing arguments\n");
+		ft_printf("ERROR: Missing arguments\n");
 		return (0);
 	}
-	init_game(&game, av[1]);
+	is_cub = main_parser(av[1]);
+	if (!is_cub)
+		return (0);
+	if (!init_game(&game, av[1]))
+		return (0);
 	gg()->game = game;
 	init_player(&game.player);
 	load_all_textures(&game);
 	init_vignette(&game);
 	mlx_hook(game.win, 2, 1L<<0, key_press, &game.player);
 	mlx_hook(game.win, 3, 1L<<1, key_release, &game.player);
+	mlx_hook(gg()->game.win, 17, 0, exit_game, &gg()->game);
 	mlx_loop_hook(game.mlx, draw_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);

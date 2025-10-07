@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/06 17:31:56 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:15:54 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	void		*img;
-
 	char		*data;
 	int			bpp;
 	int			size_line;
@@ -60,6 +59,11 @@ typedef struct s_game
 	char		**map;
 	t_player	player;
 }	t_game;
+
+typedef struct s_textures
+{
+	
+}	t_textures;
 
 typedef struct s_global
 {
