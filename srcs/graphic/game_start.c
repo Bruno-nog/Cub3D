@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:49:33 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/01 18:41:01 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/02 11:10:46 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	game_start(t_game *game)
 {
 	game->mlx = mlx_init();
 	size_window_start(game);
-	game->win = mlx_new_window(game->mlx, 10, 10, "kleber");
+	game->win = mlx_new_window(game->mlx, 10, 10, "Cub3D");
 	game->moves = 0;
 	put_moves(game);
 	game->endgame = 0;
