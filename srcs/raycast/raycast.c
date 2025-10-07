@@ -49,7 +49,7 @@ void	init_vignette(t_game *game)
 		game->vignette_map[y] = malloc(sizeof(float) * WIDTH);
 		y++;
 	}
-	max_dist = WIDTH * 0.4;
+	max_dist = WIDTH * 0.35;
 	y = 0;
 	while (y < HEIGHT)
 	{
