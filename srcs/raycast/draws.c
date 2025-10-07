@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:42:22 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/06 14:19:28 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/07 14:54:08 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	if (!DEBUG)
 	{
 		dist = fixed_dist(game->player.y, ray_x, ray_y, game);
-		height = (BLOCK / dist) * (WIDTH / 2);
+		height = (BLOCK / 0.6 / dist) * (WIDTH / 2);
 		draw_wall_with_texture(game, i, height, texture_index, wall_x / BLOCK);
 	}
 }

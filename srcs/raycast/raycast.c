@@ -50,7 +50,7 @@ void	init_vignette(t_game *game)
 		// Adicione uma verificação de erro para o malloc!
 		y++;
 	}
-	max_dist = WIDTH * 0.3;
+	max_dist = WIDTH * 0.35;
 	y = 0;
 	while (y < HEIGHT)
 	{
