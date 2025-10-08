@@ -99,10 +99,10 @@ void	clear_image(t_game *game)
 	int	x;
 
 	y = 0;
-	game->ceiling = 0x0AD2FA;
-	game->floor = 0;
+	// game->ceiling = 0x0AD2FA;
+	game->floor = 0x170404;
 	// game->ceiling = 0x0F0F0F;
-	// game->ceiling = 0x87CEEB;
+	game->ceiling = 0x050547;
 	// game->floor = 0x1A0707;
 	while (y < HEIGHT)
 	{
@@ -272,17 +272,6 @@ char **read_map(const char *path)
 
 bool	init_game(t_game *game, char *av)
 {
-	// Inicializa ponteiros de imagem como NULL
-	game->mlx = NULL;
-	game->win = NULL;
-	game->img = NULL;
-	game->data = NULL;
-	for (int i = 0; i < 4; i++) {
-		game->texture[i].img = NULL;
-		game->texture[i].addr = NULL;
-	}
-	game->vignette_map = NULL;
-
 	game->mlx = mlx_init();
 	game->map = read_map(av);
 	if (game->map == NULL)
@@ -292,7 +281,7 @@ bool	init_game(t_game *game, char *av)
 	game->data = mlx_get_data_addr(game->img, &game->bpp,
 			&game->size_line, &game->endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	return (true);
+    return (true);
 }
 
 bool	touch(float px, float py, t_game *game)
