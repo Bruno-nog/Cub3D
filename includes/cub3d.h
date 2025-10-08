@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/07 16:02:04 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:02:57 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@
 t_global	*gg(void);
 void		init_player(t_player *player);
 void		move_player(t_player *player);
-int			key_press(int keycode, t_player *player);
+int			key_press(int keycode, t_game *game);
 int			key_release(int keycode, t_player *player);
 char		**read_map(const char *path);
 int			exit_game(t_game *game);
-bool	    init_game(t_game *game, char *av);
+bool		init_game(t_game *game, char *av);
 
 void		draw_square(int x, int y, int size, int color);
 void		draw_map(t_game *game);
@@ -49,9 +49,10 @@ void		clear_image(t_game *game);
 void		put_pixel(int x, int y, int color, t_game *game);
 float		fixed_dist(float y1, float x2, float y2, t_game *game);
 bool		touch(float px, float py, t_game *game);
-bool	    main_parser(char *av);
+bool		main_parser(char *av);
 void		load_all_textures(t_game *game);
 void		init_vignette(t_game *game);
+void		free_vignette(t_game *game);
 
 // GRAPHIC
 
