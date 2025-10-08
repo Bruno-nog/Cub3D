@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/08 15:44:48 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/08 16:13:52 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ void	init_player(t_player *player)
 	player->right_rotate = false;
 }
 
-int	key_press(int keycode, t_player *player)
+int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
-		exit_game(&gg()->game);
+		exit_game(game);
 	if (keycode == W)
-		player->key_up = true;
+		game->player.key_up = true;
 	if (keycode == S)
-		player->key_down = true;
+		game->player.key_down = true;
 	if (keycode == A)
-		player->key_left = true;
+		game->player.key_left = true;
 	if (keycode == D)
-		player->key_right = true;
+		game->player.key_right = true;
 	if (keycode == LEFT)
-		player->left_rotate = true;
+		game->player.left_rotate = true;
 	if (keycode == RIGHT)
-		player->right_rotate = true;
+		game->player.right_rotate = true;
 	return (0);
 }
 
