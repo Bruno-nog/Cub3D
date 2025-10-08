@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/08 12:53:04 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:44:48 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,15 +115,16 @@ void	draw_scene(t_game *game)
 
 void	move_player(t_player *player, double dt)
 {
-	float	speed; float	angle_speed; float	cos_angle; float	sin_angle;
-	double	ds; double	da;
+	float	speed;
+	float	angle_speed;
+	float	cos_angle;
+	float	sin_angle;
+	double	ds;
+	double	da;
 
 	speed = 200.0f;
 	angle_speed = 2.05f;
-	if (dt <= 0.0)
-		dt = 0.0;
-	else if (dt > 0.1)
-		dt = 0.1;
+
 	ds = (double)speed * dt; da = (double)angle_speed * dt;
 	cos_angle = cos(player->angle); sin_angle = sin(player->angle);
 	if (player->left_rotate == true)

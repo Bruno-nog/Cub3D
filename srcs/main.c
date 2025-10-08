@@ -79,7 +79,6 @@ int	draw_loop(t_game *game)
 	return (0);
 }
 
-
 int	main(int ac, char **av)
 {
 	t_game	game;
