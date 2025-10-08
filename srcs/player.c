@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/07 16:02:11 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/08 12:53:04 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,24 +87,75 @@ static void	player_angle(t_player *player,
 	}
 }
 
-void	move_player(t_player *player)
+void	draw_scene(t_game *game)
 {
-	float	speed;
-	float	angle_speed;
-	float	cos_angle;
-	float	sin_angle;
+	t_player	*player;
+	float		fraction;
+	float		start_x;
+	int			i;
 
-	speed = 2;
-	angle_speed = 0.03;
-	cos_angle = cos(player->angle);
-	sin_angle = sin(player->angle);
-	if (player->left_rotate)
-		player->angle -= angle_speed;
-	if (player->right_rotate)
-		player->angle += angle_speed;
-	if (player->angle > 2 * PI)
-		player->angle = 0;
-	if (player->angle < 0)
-		player->angle = 2 * PI;
-	player_angle(player, cos_angle, sin_angle, speed);
+	player = &game->player;
+	clear_image(game);
+	if (DEBUG)
+	{
+		draw_square(player->x, player->y, 10, 0x00FF00);
+		draw_map(game);
+	}
+	fraction = PI / 3 / WIDTH;
+	start_x = player->angle - PI / 6;
+	i = 0;
+	while (i < WIDTH)
+	{
+		draw_line(player, game, start_x, i);
+		start_x += fraction;
+		i++;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
+
+void	move_player(t_player *player, double dt)
+{
+	float	speed; float	angle_speed; float	cos_angle; float	sin_angle;
+	double	ds; double	da;
+
+	speed = 200.0f;
+	angle_speed = 2.05f;
+	if (dt <= 0.0)
+		dt = 0.0;
+	else if (dt > 0.1)
+		dt = 0.1;
+	ds = (double)speed * dt; da = (double)angle_speed * dt;
+	cos_angle = cos(player->angle); sin_angle = sin(player->angle);
+	if (player->left_rotate == true)
+		player->angle -= (float)da;
+	if (player->right_rotate == true)
+		player->angle += (float)da;
+	if (player->angle > 2 * PI)
+		player->angle -= 2 * PI;
+	if (player->angle < 0)
+		player->angle += 2 * PI;
+	player_angle(player, cos_angle, sin_angle, (float)ds);
+}
+
+
+// void	move_player(t_player *player)
+// {
+// 	float	speed;
+// 	float	angle_speed;
+// 	float	cos_angle;
+// 	float	sin_angle;
+
+// 	speed = 3;
+// 	angle_speed = 0.05;
+// 	cos_angle = cos(player->angle);
+// 	sin_angle = sin(player->angle);
+// 	if (player->left_rotate)
+// 		player->angle -= angle_speed;
+// 	if (player->right_rotate)
+// 		player->angle += angle_speed;
+// 	if (player->angle > 2 * PI)
+// 		player->angle = 0;
+// 	if (player->angle < 0)
+// 		player->angle = 2 * PI;
+// 	player_angle(player, cos_angle, sin_angle, speed);
+// }
