@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/08 13:45:15 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/09 19:56:37 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	free_map(char **map)
 	}
 	free(map);
 }
+
 
 void	free_vignette(t_game *game)
 {

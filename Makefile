@@ -36,6 +36,7 @@ SRCS = main.c \
 	exit_game.c \
 	parser/main_parse.c \
 	read/read_map.c \
+	read/utils_read.c \
 	vignette/vignette.c \
 	textures.c
 
