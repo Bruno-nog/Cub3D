@@ -58,6 +58,10 @@ void	init_vignette(t_game *game)
 		{
 			dist = sqrt(pow(x - (WIDTH / 2.0), 2) + pow(y - (HEIGHT / 2.0), 2));
 			game->vignette_map[y][x] = 1.0 - (dist / max_dist);
+			float factor = 1 - (dist / max_dist);
+			if (factor < 0.2) factor = 0.2;
+			if (factor > 1.5) factor = 1.5;
+			game->vignette_map[y][x] = factor;
 			x++;
 		}
 		y++;
@@ -80,18 +84,6 @@ void	put_pixel(int x, int y, int color, t_game *game)
 	game->data[index + 1] = (color >> 8) & 0xFF;
 	game->data[index + 2] = (color >> 16) & 0xFF;
 }
-
-// void	put_pixel(int x, int y, int color, t_game *game)
-// {
-// 	int		index;
-
-// 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
-// 		return ;
-// 	index = y * game->size_line + x * game->bpp / 8;
-// 	game->data[index] = color & 0xFF;
-// 	game->data[index + 1] = (color >> 8) & 0xFF;
-// 	game->data[index + 2] = (color >> 16) & 0xFF;
-// }
 
 void	clear_image(t_game *game)
 {
@@ -118,69 +110,6 @@ void	clear_image(t_game *game)
 		y++;
 	}
 }
-
-// static char *dup_line_no_newline(char *s)
-// {
-//     size_t	len;
-//     char	*copy;
-
-// 	len = ft_strlen(s);
-//     copy = m.alloc(len + 1);
-//     if (!copy)
-// 	{
-// 		free(copy);
-//         return NULL;
-// 	}
-//     if (len > 0 && s[len - 1] == '\n')
-//         len--;
-//     ft_memcpy(copy, s, len);
-//     copy[len] = '\0';
-//     return copy;
-// }
-
-// char **read_map(const char *path)
-// {
-//     int     fd;
-//     char    *line;
-//     char    **map = NULL;
-//     size_t  count = 0;
-//     char    **tmp;
-//     char    *clean;
-
-//     fd = open(path, O_RDONLY);
-//     if (fd < 0)
-//     {
-//         perror("open");
-//         return NULL;
-//     }
-//     while ((line = get_next_line(fd)))
-//     {
-//         clean = dup_line_no_newline(line);
-// 		if (clean)
-// 	        free(line);
-//         if (!clean)
-//         {
-//             perror("malloc/strdup");
-//             // free_map(map);
-//             close(fd);
-//             return NULL;
-//         }
-//         tmp = realloc(map, sizeof(char *) * (count + 2));
-//         if (!tmp)
-//         {
-//             perror("realloc");
-//             free(clean);
-//             // free_map(map);
-//             close(fd);
-//             return NULL;
-//         }
-//         map = tmp;
-//         map[count++] = clean;
-//         map[count] = NULL;
-//     }
-//     close(fd);
-//     return map;
-// }
 
 static char *dup_line_no_newline(const char *s)
 {

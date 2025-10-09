@@ -74,7 +74,7 @@ fclean: clean
 # 	-$(VALGRIND) ./$(NAME)
 
 val: all
-	valgrind -q --leak-check=full --show-leak-kinds=all ./$(NAME) $(MAP)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(MAP)
 
 valgrind: all
 	@/bin/valgrind -q \

@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/08 13:56:53 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/09 12:40:43 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ typedef struct s_player
 
 	bool	left_rotate;
 	bool	right_rotate;
+
+	int			column;
+	int			row;
+
 }	t_player;
 
 typedef struct s_game
