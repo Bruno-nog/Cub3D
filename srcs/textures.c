@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:01:47 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/06 13:27:52 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/09 14:29:58 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,48 +35,3 @@ void	load_all_textures(t_game *game)
 	load_single_texture(game, 2, "texture/east.xpm");
 	load_single_texture(game, 3, "texture/west.xpm");
 }
-
-// void	draw_wall_simple(t_game *game, int screen_x, float ray_x, float ray_y, int color)
-// {
-// 	float	dist;
-// 	float	height;
-// 	int		start_y;
-// 	int		end_y;
-
-// 	start_y = (HEIGHT - height) / 2;
-// 	dist = fixed_dist(game->player.y, ray_x, ray_y, game);
-// 	height = (BLOCK / dist) * (WIDTH / 2);
-// 	end_y = start_y + height;
-// 	while (start_y < end_y)
-// 	{
-// 		put_pixel(screen_x, start_y, color, game);
-// 		start_y++;
-// 	}
-// }
-
-// void	draw_line(t_player *player, t_game *game, float start_x, int i)
-// {
-// 	float	cos_angle;
-// 	float	sin_angle;
-// 	float	ray_x;
-// 	float	ray_y;
-// 	int		side;
-
-// 	cos_angle = cos(start_x);
-// 	sin_angle = sin(start_x);
-// 	ray_x = player->x;
-// 	ray_y = player->y;
-// 	while (!touch(ray_x, ray_y, game))
-// 	{
-// 		if (DEBUG)
-// 			put_pixel(ray_x, ray_y, 0xFF0000, game);
-// 		ray_x += cos_angle;
-// 		ray_y += sin_angle;
-// 	}
-// 	if ((int)((ray_x - cos_angle) / BLOCK) != (int)(ray_x / BLOCK))
-// 		side = 1;
-// 	else
-// 		side = 0;
-// 	if (!DEBUG)
-// 		draw_vision(game, ray_x, ray_y, i);
-// }

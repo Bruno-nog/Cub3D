@@ -98,25 +98,10 @@ int	main(int ac, char **av)
 	init_player(&game.player);
 	load_all_textures(&game);
 	init_vignette(&game);
-	mlx_hook(game.win, 2, 1L<<0, key_press, &game);
-	mlx_hook(game.win, 3, 1L<<1, key_release, &game.player);
+	mlx_hook(game.win, 2, 1L << 0, key_press, &game);
+	mlx_hook(game.win, 3, 1L << 1, key_release, &game.player);
 	mlx_hook(game.win, 17, 0, exit_game, &game);
 	mlx_loop_hook(game.mlx, draw_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
-
-	// float		ray_x;
-	// float		ray_y;
-	// float		cos_angle;
-	// float		sin_angle;
-	// ray_x = player->x;
-	// ray_y = player->y;
-	// cos_angle = cos(player->angle);
-	// sin_angle = sin(player->angle);
-	// while (!touch(ray_x, ray_y, game))
-	// {
-	// 	put_pixel(ray_x, ray_y, 0xFF0000, game);
-	// 	ray_x += cos_angle;
-	// 	ray_y += sin_angle;
-	// }
