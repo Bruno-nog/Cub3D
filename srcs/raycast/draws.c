@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:42:22 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/07 16:48:17 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/09 13:06:20 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ unsigned int	get_texture_color(t_texture *texture, int x, int y)
 	dst = texture->addr + (y * texture->line_len + x * (texture->bpp / 8));
 	return (*(unsigned int *)dst);
 }
-
 
 void	draw_square(int x, int y, int size, int color)
 {
@@ -102,44 +101,41 @@ void	draw_wall_with_texture(t_game *game, int screen_x, float height, int textur
 		end_y = HEIGHT;
 
 	tex_x = (int)(wall_x * game->texture[texture_index].width);
-	for (y = start_y; y < end_y; y++)
+	y = start_y;
+	while (y < end_y)
 	{
 		int d = y * 256 - HEIGHT * 128 + (int)height * 128;
 		tex_y = ((d * game->texture[texture_index].height) / (int)height) / 256;
 		color = get_texture_color(&game->texture[texture_index], tex_x, tex_y);
 		put_pixel(screen_x, y, color, game);
+		y++;
 	}
 }
 
-void	draw_line(t_player *player, t_game *game, float start_x, int i)
+static void	draw_line_aux(t_game *game, float cos_angle, float sin_angle, float ray_x, float ray_y, int i)
 {
-	float cos_angle = cos(start_x);
-	float sin_angle = sin(start_x);
-	float ray_x = player->x;
-	float ray_y = player->y;
-	int side;
-	int texture_index;
-	float wall_x;
+	int		side;
+	int		texture_index;
+	float	wall_x;
 	float	height;
 	float	dist;
 
-	while (!touch(ray_x, ray_y, game))
-	{
-		if (DEBUG)
-			put_pixel(ray_x, ray_y, 0xFF0000, game);
-		ray_x += cos_angle;
-		ray_y += sin_angle;
-	}
 	if ((int)((ray_x - cos_angle) / BLOCK) != (int)(ray_x / BLOCK))
 	{
-		side = 1; // vertical
-		texture_index = (cos_angle > 0) ? 2 : 3;
+		side = 1;
+		if (cos_angle > 0)
+			texture_index = 2;
+		else
+		texture_index = 3;
 		wall_x = fmod(ray_y, BLOCK);
 	}
 	else
 	{
-		side = 0; // horizontal
-		texture_index = (sin_angle > 0) ? 1 : 0;
+		side = 0;
+		if (sin_angle > 0)
+			texture_index = 1;
+		else
+			texture_index = 0;
 		wall_x = fmod(ray_x, BLOCK);
 	}
 	if (!DEBUG)
@@ -148,4 +144,25 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 		height = (BLOCK / 0.6 / dist) * (WIDTH / 2);
 		draw_wall_with_texture(game, i, height, texture_index, wall_x / BLOCK);
 	}
+}
+
+void	draw_line(t_player *player, t_game *game, float start_x, int i)
+{
+	float	cos_angle;
+	float	sin_angle;
+	float	ray_x;
+	float	ray_y;
+
+	cos_angle = cos(start_x);
+	sin_angle = sin(start_x);
+	ray_x = player->x;
+	ray_y = player->y;
+	while (!touch(ray_x, ray_y, game))
+	{
+		if (DEBUG)
+			put_pixel(ray_x, ray_y, 0xFF0000, game);
+		ray_x += cos_angle;
+		ray_y += sin_angle;
+	}
+	draw_line_aux(game, cos_angle, sin_angle, ray_x, ray_y, i);
 }

@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/08 15:02:34 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/09 13:44:54 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 
 void	init_player(t_player *player)
 {
-	player->x = WIDTH / 2;
-	player->y = HEIGHT / 2;
+	player->row = 1;
+	player->column = 20;
+	player->x = player->column * BLOCK + BLOCK / 2;
+	player->y = player->row * BLOCK + BLOCK / 2;
+	// player->x = WIDTH / 2;
+	// player->y = HEIGHT / 2;
 	player->angle = PI / 2;
 	player->key_up = false;
 	player->key_down = false;
@@ -77,13 +81,13 @@ static void	player_angle(t_player *player,
 	}
 	if (player->key_left)
 	{
-		player->x += sin_angle * (speed);
-		player->y -= cos_angle * (speed);
+		player->x += sin_angle * (speed / 2);
+		player->y -= cos_angle * (speed / 2);
 	}
 	if (player->key_right)
 	{
-		player->x -= sin_angle * (speed);
-		player->y += cos_angle * (speed);
+		player->x -= sin_angle * (speed / 2);
+		player->y += cos_angle * (speed / 2);
 	}
 }
 
