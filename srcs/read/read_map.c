@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/09 19:54:39 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/09 20:00:52 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,12 @@ static int	open_map(const char *path)
 	return (fd);
 }
 
-char **read_map(const char *path, char **map)
+char **read_map(const char *path, char **map, size_t count, char *line)
 {
 	int     fd;
-	char    *line;
-	size_t  count;
 	char    **new_map;
 	char    *clean;
 
-	count = 0;
 	fd = open_map(path);
 	if (fd < 0)
 		return NULL;

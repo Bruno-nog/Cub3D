@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/09 19:57:51 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/09 20:02:24 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		free_vignette(t_game *game);
 
 
 // READ
-char		**read_map(const char *path, char **map);
+char **read_map(const char *path, char **map, size_t count, char *line);
 
 
 // UTILS_READ

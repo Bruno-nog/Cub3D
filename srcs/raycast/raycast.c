@@ -60,11 +60,15 @@ void	clear_image(t_game *game)
 
 bool	init_game(t_game *game, char *av)
 {
-	char **map;
+	char	**map;
+	size_t	count;
+	char	*line;
 
+	count = 0;
 	map = NULL;
+	line = NULL;
 	game->mlx = mlx_init();
-	game->map = read_map(av, map);
+	game->map = read_map(av, map, count, line);
 	if (game->map == NULL)
 		return (false);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
