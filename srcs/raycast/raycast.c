@@ -9,64 +9,9 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	darken_color(int color, float factor)
-{
-	int	r;
-	int	g;
-	int	b;
+#include <stddef.h>
 
 
-	if (factor < 0.0)
-		factor = 0.0;
-	if (factor > 1.0)
-		factor = 1.0;
-
-	r = (color >> 16) & 0xFF;
-	g = (color >> 8) & 0xFF;
-	b = color & 0xFF;
-
-	r *= factor;
-	g *= factor;
-	b *= factor;
-
-	return (r << 16 | g << 8 | b);
-}
-
-void	init_vignette(t_game *game)
-{
-	int		x;
-	int		y;
-	float	dist;
-	float	max_dist;
-
-	game->vignette_map = malloc(sizeof(float *) * HEIGHT);
-	if (!game->vignette_map)
-		return ;
-	y = 0;
-	while (y < HEIGHT)
-	{
-		game->vignette_map[y] = malloc(sizeof(float) * WIDTH);
-		y++;
-	}
-	max_dist = WIDTH * 0.35;
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < 1280)
-		{
-			dist = sqrt(pow(x - (WIDTH / 2.0), 2) + pow(y - (HEIGHT / 2.0), 2));
-			game->vignette_map[y][x] = 1.0 - (dist / max_dist);
-			float factor = 1 - (dist / max_dist);
-			if (factor < 0.2) factor = 0.2;
-			if (factor > 1.5) factor = 1.5;
-			game->vignette_map[y][x] = factor;
-			x++;
-		}
-		y++;
-	}
-}
 
 void	put_pixel(int x, int y, int color, t_game *game)
 {
@@ -75,7 +20,6 @@ void	put_pixel(int x, int y, int color, t_game *game)
 
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return ;
-
 	brightness = game->vignette_map[y][x];
 	color = darken_color(color, brightness);
 
@@ -111,93 +55,8 @@ void	clear_image(t_game *game)
 	}
 }
 
-static char *dup_line_no_newline(const char *s)
-{
-    size_t orig_len;
-    size_t len;
-    char *copy;
 
-    if (!s)
-        return NULL;
-    orig_len = ft_strlen(s);
-    len = orig_len;
-    if (len > 0 && s[len - 1] == '\n')
-        len--;
-    copy = malloc(len + 1);
-    if (!copy)
-        return NULL;
-    if (len > 0)
-        ft_memcpy(copy, s, len);
-    copy[len] = '\0';
-    return copy;
-}
 
-static void free_map(char **map)
-{
-    size_t i;
-
-    if (!map)
-        return;
-    i = 0;
-    while (map[i])
-    {
-        free(map[i]);
-        i++;
-    }
-    free(map);
-}
-
-char **read_map(const char *path)
-{
-    int     fd;
-    char    *line;
-    char    **map = NULL;
-    size_t  count = 0;
-    char    **new_map;
-    char    *clean;
-    size_t  i;
-
-    fd = open(path, O_RDONLY);
-    if (fd < 0)
-    {
-        perror("open");
-        return NULL;
-    }
-    while ((line = get_next_line(fd)))
-    {
-        clean = dup_line_no_newline(line);
-        free(line);
-        if (!clean)
-        {
-            perror("malloc/strdup");
-            free_map(map);
-            close(fd);
-            return NULL;
-        }
-        new_map = malloc((count + 2) * sizeof(char *));
-        if (!new_map)
-        {
-            perror("malloc");
-            free(clean);
-            free_map(map);
-            close(fd);
-            return NULL;
-        }
-        i = 0;
-        while (i < count)
-        {
-            new_map[i] = map[i];
-            i++;
-        }
-        new_map[count] = clean;
-        new_map[count + 1] = NULL;
-        free(map);
-        map = new_map;
-        count++;
-    }
-    close(fd);
-    return map;
-}
 
 bool	init_game(t_game *game, char *av)
 {
@@ -212,7 +71,6 @@ bool	init_game(t_game *game, char *av)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
     return (true);
 }
-#include <stddef.h>
 
 static void get_map_size(t_game *game, int *w, int *h)
 {

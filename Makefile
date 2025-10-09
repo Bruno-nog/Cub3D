@@ -35,6 +35,8 @@ SRCS = main.c \
 	raycast/draws.c \
 	exit_game.c \
 	parser/main_parse.c \
+	read/read_map.c \
+	vignette/vignette.c \
 	textures.c
 
 SRCS_FULL := $(addprefix $(SRC_DIR)/,$(SRCS))
