@@ -212,15 +212,43 @@ bool	init_game(t_game *game, char *av)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return (true);
 }
+#include <stddef.h>
 
-bool	touch(float px, float py, t_game *game)
+static void get_map_size(t_game *game, int *w, int *h)
 {
-	int	x;
-	int	y;
+	int i;
 
-	x = px / BLOCK;
-	y = py / BLOCK;
-	if (game->map[y][x] == '1')
+	*h = 0;
+	*w = 0;
+	if (!game->map)
+		return ;
+	while (game->map[*h] != NULL)
+		(*h)++;
+	if (*h > 0)
+	{
+		i = 0;
+		while (game->map[0][i] != '\0')
+			i++;
+		*w = i;
+	}
+}
+
+bool touch(float px, float py, t_game *game)
+{
+	int x;
+	int y;
+	int map_w;
+	int map_h;
+
+	if (!game || !game->map)
 		return (true);
-	return (false);
+	get_map_size(game, &map_w, &map_h);
+	if (map_w == 0 || map_h == 0)
+		return (true);
+
+	x = (int)(px / BLOCK);
+	y = (int)(py / BLOCK);
+	if (x < 0 || y < 0 || x >= map_w || y >= map_h)
+		return (true);
+	return (game->map[y][x] == '1');
 }
