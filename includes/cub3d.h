@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/09 20:02:24 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/10 19:14:04 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # define HEIGHT 720
 # define BLOCK 64
 # define DEBUG 0
+
+#define PLAYER_BUFFER 6.0f
+
 
 t_global	*gg(void);
 void		init_player(t_player *player);

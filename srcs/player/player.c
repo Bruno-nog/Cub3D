@@ -6,16 +6,11 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/10 16:40:31 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/10 19:27:11 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
-
-
-#define PLAYER_BUFFER 6.0f
-#define STRAFE_DIV    2.5f
 
 static void	try_move_x(t_player *player, float dx)
 {
@@ -45,9 +40,30 @@ static void	try_move_y(t_player *player, float dy)
 		player->y = ny;
 }
 
+static t_vec	player_angle_lateral(t_player *player,
+	float cos_angle, float sin_angle, float speed)
+{
+	t_vec	res;
+
+	res.x = 0.0f;
+	res.y = 0.0f;
+	if (player->key_right)
+	{
+		res.x += -sin_angle * (speed / 2.5f);
+		res.y +=  cos_angle * (speed / 2.5f);
+	}
+	if (player->key_left)
+	{
+		res.x +=  sin_angle * (speed / 2.5f);
+		res.y += -cos_angle * (speed / 2.5f);
+	}
+	return (res);
+}
+
 static void	player_angle(t_player *player,
 	float cos_angle, float sin_angle, float speed)
 {
+	t_vec	lateral;
 	float	dx;
 	float	dy;
 
@@ -63,77 +79,14 @@ static void	player_angle(t_player *player,
 		dx -= cos_angle * speed;
 		dy -= sin_angle * speed;
 	}
-	if (player->key_right)
-	{
-		dx += -sin_angle * (speed / STRAFE_DIV);
-		dy += cos_angle * (speed / STRAFE_DIV);
-	}
-	if (player->key_left)
-	{
-		dx += sin_angle * (speed / STRAFE_DIV);
-		dy -= cos_angle * (speed / STRAFE_DIV);
-	}
+	lateral = player_angle_lateral(player, cos_angle, sin_angle, speed);
+	dx += lateral.x;
+	dy += lateral.y;
 	if (dx == 0.0f && dy == 0.0f)
 		return ;
 	try_move_x(player, dx);
 	try_move_y(player, dy);
 }
-
-
-
-// static void	player_angle(t_player *player,
-// 	float cos_angle, float sin_angle, float speed)
-// {
-// 	float	dx;
-// 	float	dy;
-// 	float	nx;
-// 	float	ny;
-// 	float	buffer;
-// 	float	test_x;
-// 	float	test_y;
-// 	t_game	*game;
-
-// 	game = &gg()->game;
-// 	buffer = 6.0f;
-// 	dx = 0.0f;
-// 	dy = 0.0f;
-// 	if (player->key_up)
-// 	{
-// 		dx += cos_angle * speed;
-// 		dy += sin_angle * speed;
-// 	}
-// 	if (player->key_down)
-// 	{
-// 		dx -= cos_angle * speed;
-// 		dy -= sin_angle * speed;
-// 	}
-// 	if (player->key_right)
-// 	{
-// 		dx += (-sin_angle) * (speed / 2.5);
-// 		dy += ( cos_angle) * (speed / 2.5);
-// 	}
-// 	if (player->key_left)
-// 	{
-// 		dx += ( sin_angle) * (speed / 2.5);
-// 		dy += (-cos_angle) * (speed / 2.5);
-// 	}
-// 	if (dx == 0.0f && dy == 0.0f)
-// 		return ;
-// 	nx = player->x + dx;
-// 	if (dx > 0.0f)
-// 		test_x = nx + buffer;
-// 	else
-// 		test_x = nx - buffer;
-// 	if (touch(test_x, player->y, game) == false)
-// 		player->x = nx;
-// 	ny = player->y + dy;
-// 	if (dy > 0.0f)
-// 		test_y = ny + buffer;
-// 	else
-// 		test_y = ny - buffer;
-// 	if (touch(player->x, test_y, game) == false)
-// 		player->y = ny;
-// }
 
 void	draw_scene(t_game *game)
 {

@@ -37,8 +37,8 @@ SRCS = main.c \
 	read/read_map.c \
 	read/utils_read.c \
 	vignette/vignette.c \
-	player/keyboard.c \
 	player/player.c \
+	player/keyboard.c \
 	textures.c
 
 SRCS_FULL := $(addprefix $(SRC_DIR)/,$(SRCS))

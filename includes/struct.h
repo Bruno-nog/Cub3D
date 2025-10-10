@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/09 17:10:08 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/10 19:26:23 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ typedef struct s_global
 	char	**map;
 	t_game	game;
 }	t_global;
+
+typedef struct s_vec
+{
+	float	x;
+	float	y;
+}	t_vec;
 
 
 #endif
