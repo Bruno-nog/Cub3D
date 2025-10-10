@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/09 20:00:52 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/10 14:05:36 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ char **read_map(const char *path, char **map, size_t count, char *line)
 	fd = open_map(path);
 	if (fd < 0)
 		return NULL;
-    while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+    while (line != NULL)
     {
         clean = dup_line_no_newline(line);
         free(line);
@@ -88,6 +89,7 @@ char **read_map(const char *path, char **map, size_t count, char *line)
         free(map);
         map = new_map;
         count++;
+		line = get_next_line(fd);
     }
     close(fd);
     return (map);
