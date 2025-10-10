@@ -38,7 +38,7 @@ void	clear_image(t_game *game)
 	// game->ceiling = 0x0AD2FA;
 	game->floor = 0x240606;
 	// game->ceiling = 0x0F0F0F;
-	game->ceiling = 0x050547;
+	game->ceiling = 0x2E0707;
 	// game->floor = 0x1A0707;
 	while (y < HEIGHT)
 	{

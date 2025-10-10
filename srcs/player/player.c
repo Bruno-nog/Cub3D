@@ -6,64 +6,43 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/09 15:13:51 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/10 16:40:31 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
 
-void	init_player(t_player *player)
+
+#define PLAYER_BUFFER 6.0f
+#define STRAFE_DIV    2.5f
+
+static void	try_move_x(t_player *player, float dx)
 {
-	player->row = 1;
-	player->column = 20;
-	player->x = player->column * BLOCK + BLOCK / 2;
-	player->y = player->row * BLOCK + BLOCK / 2;
-	// player->x = WIDTH / 2;
-	// player->y = HEIGHT / 2;
-	player->angle = PI / 2;
-	player->key_up = false;
-	player->key_down = false;
-	player->key_right = false;
-	player->key_left = false;
-	player->left_rotate = false;
-	player->right_rotate = false;
+	float	nx;
+	float	test;
+
+	nx = player->x + dx;
+	if (dx > 0.0f)
+		test = nx + PLAYER_BUFFER;
+	else
+		test = nx - PLAYER_BUFFER;
+	if (touch(test, player->y, &gg()->game) == false)
+		player->x = nx;
 }
 
-int	key_press(int keycode, t_game *game)
+static void	try_move_y(t_player *player, float dy)
 {
-	if (keycode == KEY_ESC)
-		exit_game(game);
-	if (keycode == W)
-		game->player.key_up = true;
-	if (keycode == S)
-		game->player.key_down = true;
-	if (keycode == A)
-		game->player.key_left = true;
-	if (keycode == D)
-		game->player.key_right = true;
-	if (keycode == LEFT)
-		game->player.left_rotate = true;
-	if (keycode == RIGHT)
-		game->player.right_rotate = true;
-	return (0);
-}
+	float	ny;
+	float	test;
 
-int	key_release(int keycode, t_player *player)
-{
-	if (keycode == W)
-		player->key_up = false;
-	if (keycode == S)
-		player->key_down = false;
-	if (keycode == A)
-		player->key_left = false;
-	if (keycode == D)
-		player->key_right = false;
-	if (keycode == LEFT)
-		player->left_rotate = false;
-	if (keycode == RIGHT)
-		player->right_rotate = false;
-	return (0);
+	ny = player->y + dy;
+	if (dy > 0.0f)
+		test = ny + PLAYER_BUFFER;
+	else
+		test = ny - PLAYER_BUFFER;
+	if (touch(player->x, test, &gg()->game) == false)
+		player->y = ny;
 }
 
 static void	player_angle(t_player *player,
@@ -71,15 +50,7 @@ static void	player_angle(t_player *player,
 {
 	float	dx;
 	float	dy;
-	float	nx;
-	float	ny;
-	float	buffer;
-	float	test_x;
-	float	test_y;
-	t_game	*game;
 
-	game = &gg()->game;
-	buffer = 6.0f;
 	dx = 0.0f;
 	dy = 0.0f;
 	if (player->key_up)
@@ -94,31 +65,75 @@ static void	player_angle(t_player *player,
 	}
 	if (player->key_right)
 	{
-		dx += (-sin_angle) * (speed / 2.5);
-		dy += ( cos_angle) * (speed / 2.5);
+		dx += -sin_angle * (speed / STRAFE_DIV);
+		dy += cos_angle * (speed / STRAFE_DIV);
 	}
 	if (player->key_left)
 	{
-		dx += ( sin_angle) * (speed / 2.5);
-		dy += (-cos_angle) * (speed / 2.5);
+		dx += sin_angle * (speed / STRAFE_DIV);
+		dy -= cos_angle * (speed / STRAFE_DIV);
 	}
 	if (dx == 0.0f && dy == 0.0f)
 		return ;
-	nx = player->x + dx;
-	if (dx > 0.0f)
-		test_x = nx + buffer;
-	else
-		test_x = nx - buffer;
-	if (touch(test_x, player->y, game) == false)
-		player->x = nx;
-	ny = player->y + dy;
-	if (dy > 0.0f)
-		test_y = ny + buffer;
-	else
-		test_y = ny - buffer;
-	if (touch(player->x, test_y, game) == false)
-		player->y = ny;
+	try_move_x(player, dx);
+	try_move_y(player, dy);
 }
+
+
+
+// static void	player_angle(t_player *player,
+// 	float cos_angle, float sin_angle, float speed)
+// {
+// 	float	dx;
+// 	float	dy;
+// 	float	nx;
+// 	float	ny;
+// 	float	buffer;
+// 	float	test_x;
+// 	float	test_y;
+// 	t_game	*game;
+
+// 	game = &gg()->game;
+// 	buffer = 6.0f;
+// 	dx = 0.0f;
+// 	dy = 0.0f;
+// 	if (player->key_up)
+// 	{
+// 		dx += cos_angle * speed;
+// 		dy += sin_angle * speed;
+// 	}
+// 	if (player->key_down)
+// 	{
+// 		dx -= cos_angle * speed;
+// 		dy -= sin_angle * speed;
+// 	}
+// 	if (player->key_right)
+// 	{
+// 		dx += (-sin_angle) * (speed / 2.5);
+// 		dy += ( cos_angle) * (speed / 2.5);
+// 	}
+// 	if (player->key_left)
+// 	{
+// 		dx += ( sin_angle) * (speed / 2.5);
+// 		dy += (-cos_angle) * (speed / 2.5);
+// 	}
+// 	if (dx == 0.0f && dy == 0.0f)
+// 		return ;
+// 	nx = player->x + dx;
+// 	if (dx > 0.0f)
+// 		test_x = nx + buffer;
+// 	else
+// 		test_x = nx - buffer;
+// 	if (touch(test_x, player->y, game) == false)
+// 		player->x = nx;
+// 	ny = player->y + dy;
+// 	if (dy > 0.0f)
+// 		test_y = ny + buffer;
+// 	else
+// 		test_y = ny - buffer;
+// 	if (touch(player->x, test_y, game) == false)
+// 		player->y = ny;
+// }
 
 void	draw_scene(t_game *game)
 {
