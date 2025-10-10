@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/09 14:53:32 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:13:51 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,26 +170,3 @@ void	move_player(t_player *player, double dt)
 		player->angle += 2 * PI;
 	player_angle(player, cos_angle, sin_angle, (float)ds);
 }
-
-
-// void	move_player(t_player *player)
-// {
-// 	float	speed;
-// 	float	angle_speed;
-// 	float	cos_angle;
-// 	float	sin_angle;
-
-// 	speed = 3;
-// 	angle_speed = 0.05;
-// 	cos_angle = cos(player->angle);
-// 	sin_angle = sin(player->angle);
-// 	if (player->left_rotate)
-// 		player->angle -= angle_speed;
-// 	if (player->right_rotate)
-// 		player->angle += angle_speed;
-// 	if (player->angle > 2 * PI)
-// 		player->angle = 0;
-// 	if (player->angle < 0)
-// 		player->angle = 2 * PI;
-// 	player_angle(player, cos_angle, sin_angle, speed);
-// }
