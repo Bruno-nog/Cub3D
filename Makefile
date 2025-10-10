@@ -25,7 +25,7 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
 	MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 else
-	MLX_FLAGS = -Lmlx -lmlx -lX11 -lXext -lm
+	MLX_FLAGS = -Lminilibx-linux -lmlx -lX11 -lXext -lm
 endif
 
 SRCS = main.c \

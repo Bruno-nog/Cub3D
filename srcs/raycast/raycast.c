@@ -76,7 +76,7 @@ bool	init_game(t_game *game, char *av)
 	game->data = mlx_get_data_addr(game->img, &game->bpp,
 			&game->size_line, &game->endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-    return (true);
+	return (true);
 }
 
 static void get_map_size(t_game *game, int *w, int *h)
