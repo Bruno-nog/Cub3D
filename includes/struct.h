@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/09 12:40:43 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:10:08 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,10 @@ typedef struct s_game
 	int			bpp;
 	int			size_line;
 	int			endian;
-
 	int			floor;
 	int			ceiling;
 	t_texture	texture[4];
 	float		**vignette_map;
-
 	char		**map;
 	t_player	player;
 }	t_game;
