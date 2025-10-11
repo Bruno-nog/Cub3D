@@ -35,20 +35,15 @@ void	clear_image(t_game *game)
 	int	x;
 
 	y = 0;
-	// game->ceiling = 0x0AD2FA;
-	game->floor = 0x240606;
-	// game->ceiling = 0x0F0F0F;
-	game->ceiling = 0x050547;
-	// game->floor = 0x1A0707;
 	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
 		{
 			if (y < HEIGHT / 2)
-				put_pixel(x, y, game->ceiling, game);
+				put_pixel(x, y, game->map_tex.ceiling, game);
 			else
-				put_pixel(x, y, game->floor, game);
+				put_pixel(x, y, game->map_tex.floor, game);
 			x++;
 		}
 		y++;
@@ -67,10 +62,15 @@ bool	init_game(t_game *game, char *av)
 	count = 0;
 	map = NULL;
 	line = NULL;
+	game->map_tex.no = NULL;
+	game->map_tex.so = NULL;
+	game->map_tex.ea = NULL;
+	game->map_tex.we = NULL;
 	game->mlx = mlx_init();
-	game->map = read_map(av, map, count, line);
+	game->map = read_map(av, map, count, line, game);
 	if (game->map == NULL)
 		return (false);
+	find_player(game->map, &game->player);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp,
@@ -79,7 +79,7 @@ bool	init_game(t_game *game, char *av)
 	return (true);
 }
 
-static void get_map_size(t_game *game, int *w, int *h)
+static void	get_map_size(t_game *game, int *w, int *h)
 {
 	int i;
 
@@ -98,12 +98,12 @@ static void get_map_size(t_game *game, int *w, int *h)
 	}
 }
 
-bool touch(float px, float py, t_game *game)
+bool	touch(float px, float py, t_game *game)
 {
-	int x;
-	int y;
-	int map_w;
-	int map_h;
+	int	x;
+	int	y;
+	int	map_w;
+	int	map_h;
 
 	if (!game || !game->map)
 		return (true);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/09 15:13:51 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/10 21:31:22 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 
 void	init_player(t_player *player)
 {
-	player->row = 1;
-	player->column = 20;
-	player->x = player->column * BLOCK + BLOCK / 2;
-	player->y = player->row * BLOCK + BLOCK / 2;
-	// player->x = WIDTH / 2;
-	// player->y = HEIGHT / 2;
 	player->angle = PI / 2;
 	player->key_up = false;
 	player->key_down = false;
@@ -28,6 +22,33 @@ void	init_player(t_player *player)
 	player->key_left = false;
 	player->left_rotate = false;
 	player->right_rotate = false;
+}
+
+void	find_player(char **map, t_player *player)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (map[row])
+	{
+		col = 0;
+		while (map[row][col])
+		{
+			if (map[row][col] == 'N' || map[row][col] == 'S'
+				|| map[row][col] == 'E' || map[row][col] == 'W')
+			{
+				player->row = row + 1;
+				player->column = col + 1;
+				player->x = col * BLOCK + BLOCK / 2;
+				player->y = row * BLOCK + BLOCK / 2;
+				map[row][col] = '0';
+				return ;
+			}
+			col++;
+		}
+		row++;
+	}
 }
 
 int	key_press(int keycode, t_game *game)
