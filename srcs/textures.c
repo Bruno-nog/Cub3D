@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:01:47 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/10 20:58:26 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/11 17:23:36 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_free_split(char **split)
 	free(split);
 }
 
-int	rgb_numbers(char *line, int	floor_ceiling)
+int	rgb_numbers(char *line, int	*floor_sky)
 {
 	int		r;
 	int		g;
@@ -81,14 +81,13 @@ int	rgb_numbers(char *line, int	floor_ceiling)
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);
-	if ((r > 225 || g > 225 || b > 225) || (r < 0 || g < 0 || b < 0))
+	if ((r > 255 || g > 255 || b > 255) || (r < 0 || g < 0 || b < 0))
 	{
 		ft_putstr("Error: RGB values must be between 0 and 255.\n");
 		ft_free_split(split);
 		exit(1);
 	}
-	if (r < 0 || g < 0 || b < 0)
-	floor_ceiling = rgb_to_int(r, g, b);
+	*floor_sky = rgb_to_int(r, g, b);
 	ft_free_split(split);
 	return (1);
 }
@@ -116,8 +115,8 @@ int	parse_textures(char *line, t_texture *tex)
 		return (1);
 	}
 	if (ft_strncmp(line, "F ", 2) == 0)
-		return (rgb_numbers(line, tex->floor));
-	else if (ft_strncmp(line, "C ", 2) == 0)
-		return (rgb_numbers(line, tex->ceiling));
+		return (rgb_numbers(line, &tex->floor));
+	else if (ft_strncmp(line, "S ", 2) == 0)
+		return (rgb_numbers(line, &tex->sky));
 	return (0);
 }

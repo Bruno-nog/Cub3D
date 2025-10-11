@@ -41,7 +41,7 @@ void	clear_image(t_game *game)
 		while (x < WIDTH)
 		{
 			if (y < HEIGHT / 2)
-				put_pixel(x, y, game->map_tex.ceiling, game);
+				put_pixel(x, y, game->map_tex.sky, game);
 			else
 				put_pixel(x, y, game->map_tex.floor, game);
 			x++;

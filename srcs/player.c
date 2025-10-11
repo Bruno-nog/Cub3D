@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/10 21:31:22 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/11 19:52:16 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	find_player(char **map, t_player *player)
 {
 	int	row;
 	int	col;
-
+	int	player_count;
+\
+	player_count = 0;
 	row = 0;
 	while (map[row])
 	{
@@ -38,16 +40,26 @@ void	find_player(char **map, t_player *player)
 			if (map[row][col] == 'N' || map[row][col] == 'S'
 				|| map[row][col] == 'E' || map[row][col] == 'W')
 			{
-				player->row = row + 1;
-				player->column = col + 1;
+				player_count++;
+				if (player_count > 1)
+				{
+					ft_putstr("Error: More than one player on the map.\n");
+                    exit(1);
+				}
+				player->row = row;
+				player->column = col;
 				player->x = col * BLOCK + BLOCK / 2;
 				player->y = row * BLOCK + BLOCK / 2;
 				map[row][col] = '0';
-				return ;
 			}
 			col++;
 		}
 		row++;
+	}
+	if (player_count == 0)
+	{
+		ft_putstr("Error: No player found on the map.\n");
+        exit(1);
 	}
 }
 
