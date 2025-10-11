@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_parse.c                                       :+:      :+:    :+:   */
+/*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 12:03:25 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/11 20:10:28 by brunogue         ###   ########.fr       */
+/*   Created: 2025/10/11 20:03:31 by brunogue          #+#    #+#             */
+/*   Updated: 2025/10/11 20:16:36 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdbool.h>
-#include <string.h>
 
-static bool	verify_type_file(char *av)
+bool	is_map_closed(char **map)
 {
-	int		i;
-	char	*correct_file;
-	size_t	argument_len;
+	int	rows;
+	int	cols;
+	int	i;
+	int	j;
 
-	argument_len = ft_strlen(&av[1]);
-	correct_file = ".cub";
+	rows = 0;
+	cols = 0;
+	j = 0;
 	i = 0;
-	if (ft_strnstr(&av[1], correct_file, argument_len))
+	while (map[rows])
+		rows++;
+	while(map[0][cols])
+		cols++;
+	while (j < cols)
 	{
-		printf("Its a cub");
-		return (true);
+		if (map[0][j] != '1' || map[rows - 1][j] != '1')
+			return (false);
+		j++;
 	}
-	printf("Its not a cub");
-	return (false);
-}
-
-bool	main_parser(char *av)
-{
-	if (!verify_type_file(&av[1]))
-		return (false);
+	while (i < rows)
+	{
+		if (map[i][0] != '1' || map[i][cols - 1] != '1')
+			return (false);
+		i++;
+	}
 	return (true);
 }

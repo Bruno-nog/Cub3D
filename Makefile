@@ -38,7 +38,8 @@ SRCS = main.c \
 	read/read_map.c \
 	read/utils_read.c \
 	vignette/vignette.c \
-	textures.c
+	textures.c \
+	parser/map_parse.c
 
 SRCS_FULL := $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_FULL))

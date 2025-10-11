@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/11 17:32:07 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/11 20:15:55 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,10 @@ char	**read_map(const char *path, char **map, size_t count, char *line, t_game *
 		line = get_next_line(fd);
 	}
 	close(fd);
+	if (!is_map_closed(map))
+	{
+		ft_putstr("Error: Map is not closed by walls.\n");
+		exit(1);
+	}
 	return (map);
 }
