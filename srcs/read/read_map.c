@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/10/10 17:42:16 by ratanaka         ###   ########.fr       */
-=======
-/*   Updated: 2025/10/10 14:05:36 by brunogue         ###   ########.fr       */
->>>>>>> ff86ffa3e1c27bb2c226cbfc8e3db902b38d4433
+/*   Updated: 2025/10/11 14:14:52 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 static void	count_map(char **map, char **new_map, size_t *count)
 {
@@ -76,7 +70,6 @@ char	**read_map(const char *path, char **map, size_t count, char *line, t_game *
 
 	fd = open_map(path);
 	if (fd < 0)
-<<<<<<< HEAD
 		return (NULL);
 	while ((line = get_next_line(fd)))
 	{
@@ -101,27 +94,4 @@ char	**read_map(const char *path, char **map, size_t count, char *line, t_game *
 	}
 	close(fd);
 	return (map);
-=======
-		return NULL;
-	line = get_next_line(fd);
-    while (line != NULL)
-    {
-        clean = dup_line_no_newline(line);
-        free(line);
-		if (!verify_clean(map, clean, fd))
-			return (NULL);
-        new_map = malloc((count + 2) * sizeof(char *));
-		if (!verify_map(map, new_map, clean, fd))
-			return (NULL);
-		count_map(map, new_map, &count);
-        new_map[count] = clean;
-        new_map[count + 1] = NULL;
-        free(map);
-        map = new_map;
-        count++;
-		line = get_next_line(fd);
-    }
-    close(fd);
-    return (map);
->>>>>>> ff86ffa3e1c27bb2c226cbfc8e3db902b38d4433
 }
