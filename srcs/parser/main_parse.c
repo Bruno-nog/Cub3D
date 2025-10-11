@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:03:25 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/08 16:19:13 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/10 20:50:45 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ bool	main_parser(char *av)
 {
 	if (!verify_type_file(&av[1]))
 		return (false);
-
 	return (true);
 }

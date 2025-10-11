@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/09 20:02:24 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/10 21:12:58 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,15 @@
 
 t_global	*gg(void);
 void		init_player(t_player *player);
-void	    move_player(t_player *player, double dt);
-void	    draw_scene(t_game *game);
-int	        key_press(int keycode, t_game *game);
+void		move_player(t_player *player, double dt);
+void		draw_scene(t_game *game);
+int			key_press(int keycode, t_game *game);
 int			key_release(int keycode, t_player *player);
 int			exit_game(t_game *game);
 bool		init_game(t_game *game, char *av);
+
+int			parse_textures(char *line, t_texture *tex);
+void		find_player(char **map, t_player *player);
 
 void		draw_square(int x, int y, int size, int color);
 void		draw_map(t_game *game);
@@ -59,7 +62,8 @@ void		free_vignette(t_game *game);
 
 
 // READ
-char **read_map(const char *path, char **map, size_t count, char *line);
+char		**read_map(const char *path, char **map,
+			size_t count, char *line, t_game *game);
 
 
 // UTILS_READ

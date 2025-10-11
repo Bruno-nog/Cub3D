@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/09 20:00:52 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/10 17:42:16 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,35 +60,40 @@ static int	open_map(const char *path)
 	{
 		perror("open");
 		return (-1);
-    }
+	}
 	return (fd);
 }
 
-char **read_map(const char *path, char **map, size_t count, char *line)
+char	**read_map(const char *path, char **map, size_t count, char *line, t_game *game)
 {
-	int     fd;
-	char    **new_map;
-	char    *clean;
+	int		fd;
+	char	**new_map;
+	char	*clean;
 
 	fd = open_map(path);
 	if (fd < 0)
-		return NULL;
-    while ((line = get_next_line(fd)))
-    {
-        clean = dup_line_no_newline(line);
-        free(line);
+		return (NULL);
+	while ((line = get_next_line(fd)))
+	{
+		clean = dup_line_no_newline(line);
+		free(line);
 		if (!verify_clean(map, clean, fd))
 			return (NULL);
-        new_map = malloc((count + 2) * sizeof(char *));
-		if (!verify_map(map, new_map, clean, fd))
-			return (NULL);
-		count_map(map, new_map, &count);
-        new_map[count] = clean;
-        new_map[count + 1] = NULL;
-        free(map);
-        map = new_map;
-        count++;
-    }
-    close(fd);
-    return (map);
+		if (!parse_textures(clean, &game->map_tex) && clean[0] != '\0')
+		{
+			new_map = malloc((count + 2) * sizeof(char *));
+			if (!verify_map(map, new_map, clean, fd))
+				return (NULL);
+			count_map(map, new_map, &count);
+			new_map[count] = clean;
+			new_map[count + 1] = NULL;
+			free(map);
+			map = new_map;
+			count++;
+		}
+		else
+			free(clean);
+	}
+	close(fd);
+	return (map);
 }
