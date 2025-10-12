@@ -1,7 +1,7 @@
-NO texture/north.xpm
-SO texture/south.xpm
-WE texture/east.xpm
-EA texture/west.xpm
+NO assets/texture/north.xpm
+SO assets/texture/south.xpm
+WE assets/texture/east.xpm
+EA assets/texture/west.xpm
 
 S 46,7,7
 F 36,6,6

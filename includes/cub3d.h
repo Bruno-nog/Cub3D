@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/11 20:12:08 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/12 17:58:40 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,44 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
-# define BLOCK 64
+# define BLK 64
 # define DEBUG 0
 
-t_global	*gg(void);
-void		init_player(t_player *player);
-void		move_player(t_player *player, double dt);
-void		draw_scene(t_game *game);
-int			key_press(int keycode, t_game *game);
-int			key_release(int keycode, t_player *player);
-int			exit_game(t_game *game);
-bool		init_game(t_game *game, char *av);
+#define PLAYER_BUFFER 6.0f
 
-int			parse_textures(char *line, t_texture *tex);
-void		find_player(char **map, t_player *player);
+t_global		*gg(void);
+void			init_player(t_player *player);
+void			move_player(t_player *player, double dt);
+void			draw_scene(t_game *game);
+int				key_press(int keycode, t_game *game);
+int				key_release(int keycode, t_player *player);
+int				exit_game(t_game *game);
+bool			init_game(t_game *game, char *av);
 
-void		draw_square(int x, int y, int size, int color);
-void		draw_map(t_game *game);
-void		draw_vision(t_game *game, float ray_x, float ray_y, int i);
-void		draw_line(t_player *player, t_game *game, float start_x, int i);
-void		clear_image(t_game *game);
-void		put_pixel(int x, int y, int color, t_game *game);
-float		fixed_dist(float y1, float x2, float y2, t_game *game);
-bool		touch(float px, float py, t_game *game);
-bool		main_parser(char *av);
-void		load_all_textures(t_game *game);
-void		free_vignette(t_game *game);
+int				parse_textures(char *line, t_texture *tex);
+void			find_player(char **map, t_player *player);
+
+void			draw_square(int x, int y, int size, int color);
+void			draw_map(t_game *game);
+void			draw_vision(t_game *game, float ray_x, float ray_y, int i);
+void			draw_line(t_player *player, t_game *game, float start_x, int i);
+void			clear_image(t_game *game);
+void			put_pixel(int x, int y, int color, t_game *game);
+float			fixed_dist(float y1, float x2, float y2, t_game *game);
+bool			touch(float px, float py, t_game *game);
+bool			main_parser(char *av);
+void			load_all_textures(t_game *game);
+void			free_vignette(t_game *game);
+void			draw_wall_with_texture(t_game *game, t_drawparam *p);
+
+int				rgb_numbers(char *line, int	*floor_sky);
+int				rgb_to_int(int r, int g, int b);
+void			ft_free_split(char **split);
+
+
+// DRAW
+unsigned int	get_texture_color(t_texture *texture, int x, int y);
+void			correct_dist(t_game *game, t_rayinfo *ray, int tex_index, int i);
 
 // GRAPHIC
 
@@ -62,29 +74,29 @@ void		free_vignette(t_game *game);
 
 
 // READ
-char		**read_map(const char *path, char **map,
-			size_t count, char *line, t_game *game);
+char			**read_map(const char *path, char **map,
+					size_t count, char *line, t_game *game);
 
 
 // UTILS_READ
-char		*dup_line_no_newline(const char *s);
-void		free_map(char **map);
+char			*dup_line_no_newline(const char *s);
+void			free_map(char **map);
 
 
 // VIGNETTE
 
-int			darken_color(int color, float factor);
-void		init_vignette(t_game *game);
+int				darken_color(int color, float factor);
+void			init_vignette(t_game *game);
 
 
 // EXIT_GAME
 
-void		free_map(char **map);
-void		free_vignette(t_game *game);
-void		destroy_textures(t_game *game);
-int			exit_game(t_game *game);
+void			free_map(char **map);
+void			free_vignette(t_game *game);
+void			destroy_textures(t_game *game);
+int				exit_game(t_game *game);
 
 
-bool		is_map_closed(char **map);
+bool			is_map_closed(char **map);
 
 #endif

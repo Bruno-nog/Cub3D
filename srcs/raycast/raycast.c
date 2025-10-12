@@ -11,8 +11,6 @@
 #include "cub3d.h"
 #include <stddef.h>
 
-
-
 void	put_pixel(int x, int y, int color, t_game *game)
 {
 	int		index;
@@ -49,9 +47,6 @@ void	clear_image(t_game *game)
 		y++;
 	}
 }
-
-
-
 
 bool	init_game(t_game *game, char *av)
 {
@@ -111,8 +106,8 @@ bool	touch(float px, float py, t_game *game)
 	if (map_w == 0 || map_h == 0)
 		return (true);
 
-	x = (int)(px / BLOCK);
-	y = (int)(py / BLOCK);
+	x = (int)(px / BLK);
+	y = (int)(py / BLK);
 	if (x < 0 || y < 0 || x >= map_w || y >= map_h)
 		return (true);
 	return (game->map[y][x] == '1');

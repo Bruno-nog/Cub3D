@@ -1,7 +1,7 @@
-NO texture/north.xpm
-SO texture/south.xpm
-WE texture/east.xpm
-EA texture/west.xpm
+NO assets/texture/north.xpm
+SO assets/texture/south.xpm
+WE assets/texture/east.xpm
+EA assets/texture/west.xpm
 
 S 46,7,7
 F 36,6,6
@@ -14,7 +14,7 @@ F 36,6,6
 11011000001101111
 11001111111001111
 11100000000000111
-111111W0111111111
+111111S0111111111
 11100000000000111
 11001111111001111
 11001000001001111

@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:25:22 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/09 17:36:33 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/12 16:53:38 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	init_vignette(t_game *game)
 	int		y;
 	float	dist;
 	float	max_dist;
+	float	factor;
 
 	game->vignette_map = malloc(sizeof(float *) * HEIGHT);
 	if (!game->vignette_map)
@@ -59,7 +60,7 @@ void	init_vignette(t_game *game)
 		{
 			dist = sqrt(pow(x - (WIDTH / 2.0), 2) + pow(y - (HEIGHT / 2.0), 2));
 			game->vignette_map[y][x] = 1.0 - (dist / max_dist);
-			float factor = 1 - (dist / max_dist);
+			factor = 1 - (dist / max_dist);
 			if (factor < 0.2) factor = 0.2;
 			if (factor > 1.5) factor = 1.5;
 			game->vignette_map[y][x] = factor;
