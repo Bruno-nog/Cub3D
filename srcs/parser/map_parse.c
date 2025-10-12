@@ -6,11 +6,19 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 20:03:31 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/11 20:16:36 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:07:11 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	colrow(char **map, int *rows, int *cols)
+{
+	while (map[*rows])
+		(*rows)++;
+	while (map[0][*cols])
+		(*cols)++;
+}
 
 bool	is_map_closed(char **map)
 {
@@ -23,10 +31,7 @@ bool	is_map_closed(char **map)
 	cols = 0;
 	j = 0;
 	i = 0;
-	while (map[rows])
-		rows++;
-	while(map[0][cols])
-		cols++;
+	colrow(map, &rows, &cols);
 	while (j < cols)
 	{
 		if (map[0][j] != '1' || map[rows - 1][j] != '1')

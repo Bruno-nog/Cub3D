@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:59:16 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 16:00:06 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:01:55 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	rgb_to_int(int r, int g, int b)
 {
 	return ((r << 16) | (g << 8) | b);
 }
-
 
 int	rgb_numbers(char *line, int	*floor_sky)
 {

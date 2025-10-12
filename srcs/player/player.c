@@ -6,13 +6,12 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/12 18:56:35 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:00:17 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
-
 
 static void	try_move_x(t_player *player, float dx)
 {
@@ -52,11 +51,11 @@ static t_vec	player_angle_lateral(t_player *player,
 	if (player->key_right)
 	{
 		res.x += -sin_angle * (speed / 2.5f);
-		res.y +=  cos_angle * (speed / 2.5f);
+		res.y += cos_angle * (speed / 2.5f);
 	}
 	if (player->key_left)
 	{
-		res.x +=  sin_angle * (speed / 2.5f);
+		res.x += sin_angle * (speed / 2.5f);
 		res.y += -cos_angle * (speed / 2.5f);
 	}
 	return (res);
@@ -90,23 +89,23 @@ static void	player_angle(t_player *player,
 	try_move_y(player, dy);
 }
 
-void move_player(t_player *player, double dt)
+void	move_player(t_player *player, double dt)
 {
-    t_move m;
+	t_move	m;
 
-    m.speed = 200.0f;
-    m.angle_speed = 1.55f;
-    m.ds = m.speed * (float)dt;
-    m.da = m.angle_speed * (float)dt;
-    m.cos_angle = cos(player->angle);
-    m.sin_angle = sin(player->angle);
-    if (player->left_rotate)
-        player->angle -= m.da;
-    if (player->right_rotate)
-        player->angle += m.da;
-    if (player->angle > 2 * PI)
-        player->angle -= 2 * PI;
-    if (player->angle < 0)
-        player->angle += 2 * PI;
-    player_angle(player, m.cos_angle, m.sin_angle, m.ds);
+	m.speed = 200.0f;
+	m.angle_speed = 1.55f;
+	m.ds = m.speed * (float)dt;
+	m.da = m.angle_speed * (float)dt;
+	m.cos_angle = cos(player->angle);
+	m.sin_angle = sin(player->angle);
+	if (player->left_rotate)
+		player->angle -= m.da;
+	if (player->right_rotate)
+		player->angle += m.da;
+	if (player->angle > 2 * PI)
+		player->angle -= 2 * PI;
+	if (player->angle < 0)
+		player->angle += 2 * PI;
+	player_angle(player, m.cos_angle, m.sin_angle, m.ds);
 }

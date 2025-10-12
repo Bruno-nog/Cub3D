@@ -3,8 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   Created: 2025/10/01 17:43:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/01 18:41:47 by brunogue         ###   ########.fr       */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/12 19:02:54 by brunogue          #+#    #+#             */
+/*   Updated: 2025/10/12 19:03:21 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +22,6 @@ void	put_pixel(int x, int y, int color, t_game *game)
 		return ;
 	brightness = game->vignette_map[y][x];
 	color = darken_color(color, brightness);
-
 	index = y * game->size_line + x * game->bpp / 8;
 	game->data[index] = color & 0xFF;
 	game->data[index + 1] = (color >> 8) & 0xFF;
@@ -76,7 +77,7 @@ bool	init_game(t_game *game, char *av)
 
 static void	get_map_size(t_game *game, int *w, int *h)
 {
-	int i;
+	int	i;
 
 	*h = 0;
 	*w = 0;
@@ -105,7 +106,6 @@ bool	touch(float px, float py, t_game *game)
 	get_map_size(game, &map_w, &map_h);
 	if (map_w == 0 || map_h == 0)
 		return (true);
-
 	x = (int)(px / BLK);
 	y = (int)(py / BLK);
 	if (x < 0 || y < 0 || x >= map_w || y >= map_h)

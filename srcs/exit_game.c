@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 17:44:57 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:00:48 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	free_map(char **map)
 	}
 	free(map);
 }
-
 
 void	free_vignette(t_game *game)
 {
