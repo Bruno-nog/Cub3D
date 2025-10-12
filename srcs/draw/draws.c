@@ -6,14 +6,12 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:42:22 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 18:55:58 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:29:10 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
-
-
 
 unsigned int	get_texture_color(t_texture *texture, int x, int y)
 {
@@ -91,42 +89,40 @@ void	draw_map(t_game *game)
 		y++;
 	}
 }
-	
-	// static void	correct_dist(t_game *game, t_rayinfo *ray, int tex_index, int i)
-	// {
-	// 	float	distance;
-	// 	float	height;
-	// 	float	wall_x;
-	
-	// 	if (tex_index == 0 || tex_index == 1)
-	// 		wall_x = fmod(ray->ray_x, BLK);
-	// 	else
-	// 		wall_x = fmod(ray->ray_y, BLK);
-	// 	if (!DEBUG)
-	// 	{
-	// 		distance = fixed_dist(game->player.y, ray->ray_x, ray->ray_y, game);
-	// 		height = (BLK / 0.6 / distance) * (WIDTH / 2);
-	// 		draw_wall_with_texture(game, i, height, tex_index, wall_x / BLK);
-	// 	}
-	// }
-	
-	// void	draw_wall_with_texture(t_game *game, int screen_x, float height, int texture_index, float wall_x)
-	// {
-		// 	int				start_y;
-		// 	int				end_y;
-		// 	int				tex_x;
-		// 	int				tex_y;
-		// 	unsigned int	color;
-		// 	int				y;
-		
-		// 	gg()->x1 = game->player.x;
-		// 	start_y = (HEIGHT - height) / 2;
-		// 	if (start_y < 0)
-		// 		start_y = 0;
-		// 	end_y = start_y + height;
-		// 	if (end_y > HEIGHT)
-		// 		end_y = HEIGHT;
-		
+
+// static void	correct_dist(t_game *game, t_rayinfo *ray, int tex_index, int i)
+// {
+// 	float	distance;
+// 	float	height;
+// 	float	wall_x;
+
+// 	if (tex_index == 0 || tex_index == 1)
+// 		wall_x = fmod(ray->ray_x, BLK);
+// 	else
+// 		wall_x = fmod(ray->ray_y, BLK);
+// 	if (!DEBUG)
+// 	{
+// 		distance = fixed_dist(game->player.y, ray->ray_x, ray->ray_y, game);
+// 		height = (BLK / 0.6 / distance) * (WIDTH / 2);
+// 		draw_wall_with_texture(game, i, height, tex_index, wall_x / BLK);
+// 	}
+// }
+// void	draw_wall_with_texture(t_game *game, int screen_x, float height, int texture_index, float wall_x)
+// {
+// 	int				start_y;
+// 	int				end_y;
+// 	int				tex_x;
+// 	int				tex_y;
+// 	unsigned int	color;
+// 	int				y;
+
+// 	gg()->x1 = game->player.x;
+// 	start_y = (HEIGHT - height) / 2;
+// 	if (start_y < 0)
+// 		start_y = 0;
+// 	end_y = start_y + height;
+// 	if (end_y > HEIGHT)
+// 		end_y = HEIGHT;
 // 	tex_x = (int)(wall_x * game->texture[texture_index].width);
 // 	y = start_y;
 // 	while (y < end_y)

@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:02:54 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 19:03:21 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:39:10 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	put_pixel(int x, int y, int color, t_game *game)
 
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return ;
-	brightness = game->vignette_map[y][x];
+	brightness = game->vig_map[y][x];
 	color = darken_color(color, brightness);
 	index = y * game->size_line + x * game->bpp / 8;
 	game->data[index] = color & 0xFF;
@@ -52,10 +52,8 @@ void	clear_image(t_game *game)
 bool	init_game(t_game *game, char *av)
 {
 	char	**map;
-	size_t	count;
 	char	*line;
 
-	count = 0;
 	map = NULL;
 	line = NULL;
 	game->map_tex.no = NULL;
@@ -63,7 +61,7 @@ bool	init_game(t_game *game, char *av)
 	game->map_tex.ea = NULL;
 	game->map_tex.we = NULL;
 	game->mlx = mlx_init();
-	game->map = read_map(av, map, count, line, game);
+	game->map = read_map(av, map, line, game);
 	if (game->map == NULL)
 		return (false);
 	find_player(game->map, &game->player);

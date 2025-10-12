@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 19:00:48 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:39:10 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ void	free_vignette(t_game *game)
 {
 	int	y;
 
-	if (!game->vignette_map)
+	if (!game->vig_map)
 		return ;
 	y = 0;
 	while (y < HEIGHT)
 	{
-		free(game->vignette_map[y]);
+		free(game->vig_map[y]);
 		y++;
 	}
-	free(game->vignette_map);
+	free(game->vig_map);
 }
 
 void	destroy_textures(t_game *game)
