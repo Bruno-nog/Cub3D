@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/13 13:38:00 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 13:11:45 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,9 @@ void			put_pixel(int x, int y, int color, t_game *game);
 void			clear_image(t_game *game);
 float			fixed_dist(float y1, float x2, float y2, t_game *game);
 
-/* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
- *  ┃                       READ	      		                  ┃
- * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
- */
-
-char			**read_map(const char *path,
-					char **map, char *line, t_game *game);
+// READ
+char			**read_map(const char *path, char **map,
+					char *line, t_game *game);
 void			count_map(char **map, char **new_map, size_t *count);
 bool			verify_clean(char **map, char *clean, int fd);
 char			*dup_line_no_newline(const char *s);
@@ -125,5 +121,9 @@ int				exit_game(t_game *game);
 void			free_map(char **map);
 void			free_vignette(t_game *game);
 void			destroy_textures(t_game *game);
+int				exit_game(t_game *game);
+int				exit_error(t_game *game, int map);
+
+bool			is_map_closed(char **map);
 
 #endif

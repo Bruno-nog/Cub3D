@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:54:58 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 17:45:33 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 13:27:30 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ static void	load_single_texture(t_game *game, int index, char *path)
 			&game->tex[index].width, &game->tex[index].height);
 	if (game->tex[index].img == NULL)
 	{
-		printf("Erro: Não foi possível carregar a textura: %s\n", path);
-		exit(1);
+		ft_putstr("Erro: Não foi possível carregar a textura: ");
+		ft_putendl_fd(path, 1);
+		exit_error(game, 2);
 	}
 	game->tex[index].addr = mlx_get_data_addr(game->tex[index].img,
 			&game->tex[index].bpp, &game->tex[index].line_len,

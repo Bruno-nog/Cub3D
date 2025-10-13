@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 19:27:51 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 13:16:10 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ char	**read_map(const char *path, char **map, char *line, t_game *game)
 	if (is_map_closed(st.map) == 0)
 	{
 		ft_putstr("Error: Map is not closed by walls.\n");
-		exit(1);
+		free_map(st.map);
+		exit_error(game, 0);
 	}
 	return (st.map);
 }

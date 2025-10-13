@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 19:39:10 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 13:22:43 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	free_mlx(t_game *game)
+void	free_mlx(t_game *game)
 {
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
@@ -61,11 +61,39 @@ void	destroy_textures(t_game *game)
 	}
 }
 
+int	exit_error(t_game *game, int map)
+{
+	if (map == 1)
+		free_map(game->map);
+	if (map == 2)
+	{
+		free_map(game->map);
+		mlx_destroy_image(game->mlx, game->img);
+		mlx_destroy_window(game->mlx, game->win);
+		destroy_textures(game);
+	}
+	free(game->map_tex.no);
+	free(game->map_tex.so);
+	free(game->map_tex.we);
+	free(game->map_tex.ea);
+	if (game->mlx)
+	{
+		free_mlx(game);
+		game->mlx = NULL;
+	}
+	exit(0);
+	return (0);
+}
+
 int	exit_game(t_game *game)
 {
 	free_vignette(game);
 	free_map(game->map);
 	destroy_textures(game);
+	free(game->map_tex.no);
+	free(game->map_tex.so);
+	free(game->map_tex.we);
+	free(game->map_tex.ea);
 	if (game->img)
 	{
 		mlx_destroy_image(game->mlx, game->img);

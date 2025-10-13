@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 18:56:41 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 18:56:54 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 12:41:58 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static void	handle_player_at(char **map, t_player *player,
 	{
 		*player_count = *player_count + 1;
 		if (counter_player(player_count) == 0)
-			exit(1);
+		{
+			player->exit = 1;
+			return ;
+		}
 		player->row = pos->row;
 		player->column = pos->col;
 		player->x = pos->col * BLK + BLK / 2;
@@ -63,10 +66,12 @@ void	find_player(char **map, t_player *player)
 			pos.row = row;
 			pos.col = col;
 			handle_player_at(map, player, &pos, &player_count);
+			if (player->exit == 1)
+				return ;
 			col++;
 		}
 		row++;
 	}
 	if (counter_player(&player_count) == 0)
-		exit(1);
+		player->exit = 1;
 }

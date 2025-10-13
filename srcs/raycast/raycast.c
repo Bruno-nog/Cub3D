@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:02:54 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 19:39:10 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 12:58:45 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ bool	init_game(t_game *game, char *av)
 
 	map = NULL;
 	line = NULL;
-	game->map_tex.no = NULL;
+	game->player.exit = 0;
 	game->map_tex.so = NULL;
 	game->map_tex.ea = NULL;
 	game->map_tex.we = NULL;
@@ -65,6 +65,8 @@ bool	init_game(t_game *game, char *av)
 	if (game->map == NULL)
 		return (false);
 	find_player(game->map, &game->player);
+	if (game->player.exit == 1)
+		exit_error(game, 1);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp,
