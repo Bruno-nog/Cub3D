@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/13 13:11:45 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:11:15 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char			*dup_line_no_newline(const char *s);
  * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
  */
 
-int				rgb_numbers(char *line, int	*floor_sky);
+int				rgb_numbers(char *line, int	*floor_ceiling);
 int				rgb_to_int(int r, int g, int b);
 void			ft_free_split(char **split);
 void			load_all_textures(t_game *game);

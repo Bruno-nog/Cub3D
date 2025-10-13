@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 12:31:08 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:11:15 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_texture
 	char	*ea;
 
 	int		floor;
-	int		sky;
+	int		ceiling;
 }	t_texture;
 
 typedef struct s_player

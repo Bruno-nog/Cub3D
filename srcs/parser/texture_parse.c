@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:01:47 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/12 17:08:18 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:11:15 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	parse_textures(char *line, t_texture *tex)
 	}
 	if (ft_strncmp(line, "F ", 2) == 0)
 		return (rgb_numbers(line, &tex->floor));
-	else if (ft_strncmp(line, "S ", 2) == 0)
-		return (rgb_numbers(line, &tex->sky));
+	else if (ft_strncmp(line, "C ", 2) == 0)
+		return (rgb_numbers(line, &tex->ceiling));
 	return (0);
 }

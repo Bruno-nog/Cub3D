@@ -1,9 +1,9 @@
-NO assets/texture/north.xpm
-SO assets/texture/south.xpm
-WE assets/texture/east.xpm
-EA assets/texture/west.xpm
+NO assets/texture/bendy.xpm
+SO assets/texture/bendy.xpm
+WE assets/texture/bendy.xpm
+EA assets/texture/bendy.xpm
 
-S 46,7,7
+C 46,7,7
 F 36,6,6
 
 11111111111111111

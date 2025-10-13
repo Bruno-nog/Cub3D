@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:02:54 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 12:58:45 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:11:15 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	clear_image(t_game *game)
 		while (x < WIDTH)
 		{
 			if (y < HEIGHT / 2)
-				put_pixel(x, y, game->map_tex.sky, game);
+				put_pixel(x, y, game->map_tex.ceiling, game);
 			else
 				put_pixel(x, y, game->map_tex.floor, game);
 			x++;
