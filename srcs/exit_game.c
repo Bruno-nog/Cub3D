@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/10 17:42:40 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:39:10 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,19 @@ void	free_map(char **map)
 	free(map);
 }
 
-
 void	free_vignette(t_game *game)
 {
 	int	y;
 
-	if (!game->vignette_map)
+	if (!game->vig_map)
 		return ;
 	y = 0;
 	while (y < HEIGHT)
 	{
-		free(game->vignette_map[y]);
+		free(game->vig_map[y]);
 		y++;
 	}
-	free(game->vignette_map);
+	free(game->vig_map);
 }
 
 void	destroy_textures(t_game *game)
@@ -56,8 +55,8 @@ void	destroy_textures(t_game *game)
 	i = 0;
 	while (i < 4)
 	{
-		if (game->texture[i].img)
-			mlx_destroy_image(game->mlx, game->texture[i].img);
+		if (game->tex[i].img)
+			mlx_destroy_image(game->mlx, game->tex[i].img);
 		i++;
 	}
 }

@@ -25,37 +25,8 @@ t_global	*gg(void)
 	return (&global);
 }
 
-// int	draw_loop(t_game *game)
-// {
-// 	t_player	*player;
-// 	float		fraction;
-// 	float		start_x;
-// 	int			i;
-
-// 	player = &game->player;
-// 	move_player(player);
-// 	clear_image(game);
-// 	if (DEBUG)
-// 	{
-// 		draw_square(player->x, player->y, 10, 0x00FF00);
-// 		draw_map(game);
-// 	}
-// 	fraction = PI / 3 / WIDTH;
-// 	start_x = player->angle - PI / 6;
-// 	i = 0;
-// 	while (i < WIDTH)
-// 	{
-// 		draw_line(player, game, start_x, i);
-// 		start_x += fraction;
-// 		i++;
-// 	}
-// 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-// 	return (0);
-// }
-
-int	draw_loop(t_game *game)
+int	draw_loop(t_game *game, t_player *player)
 {
-	t_player				*player;
 	static struct timeval	last = {0, 0};
 	struct timeval			now;
 	double					now_s;
@@ -79,16 +50,23 @@ int	draw_loop(t_game *game)
 	return (0);
 }
 
+static bool	verify_argument(int ac)
+{
+	if (ac == 1)
+	{
+		ft_printf("ERROR: Missing arguments\n");
+		return (false);
+	}
+	return (true);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	game;
 	bool	is_cub;
 
-	if (ac == 1)
-	{
-		ft_printf("ERROR: Missing arguments\n");
+	if (!verify_argument(ac))
 		return (0);
-	}
 	is_cub = main_parser(av[1]);
 	if (!is_cub)
 		return (0);
