@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 19:39:10 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 12:31:08 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_player
 	int		column;
 	int		row;
 
+	int		exit;
 }	t_player;
 
 typedef struct s_game

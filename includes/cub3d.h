@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/12 19:35:57 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 13:11:45 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void			correct_dist(t_game *game, t_rayinfo *ray,
 // RAYCAST
 
 // READ
-char			**read_map(const char *path, char **map, char *line, t_game *game);
+char			**read_map(const char *path, char **map,
+					char *line, t_game *game);
 
 // UTILS_READ
 char			*dup_line_no_newline(const char *s);
@@ -92,6 +93,7 @@ void			free_map(char **map);
 void			free_vignette(t_game *game);
 void			destroy_textures(t_game *game);
 int				exit_game(t_game *game);
+int				exit_error(t_game *game, int map);
 
 bool			is_map_closed(char **map);
 
