@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:01:47 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/13 16:03:17 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/13 16:05:57 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	rgb_checker(char *line, t_texture *tex, t_game *game)
 		else
 			return (error);
 	}
-	else if (ft_strncmp(line, "S ", 2) == 0)
+	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
-		error = rgb_numbers(line, &tex->sky);
+		error = rgb_numbers(line, &tex->ceiling);
 		if (error == 2)
 		{
 			free(line);
