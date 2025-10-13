@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 13:16:10 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:45:12 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static int	process_next_line(t_mapstate *st)
 		free(clean);
 		return (-1);
 	}
-	if (parse_textures(clean, &st->game->map_tex) == 0 && clean[0] != '\0')
+	if (parse_textures(clean, &st->game->map_tex, st->game) == 0
+		&& clean[0] != '\0')
 	{
 		st->map = append_map_line(st->map, clean, &st->count, st->fd);
 		if (st->map == NULL)

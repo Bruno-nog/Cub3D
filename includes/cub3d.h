@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/13 14:11:15 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 16:02:58 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void			move_player(t_player *player, double dt);
 void			find_player(char **map, t_player *player);
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_player *player);
+void			find_player(char **map, t_player *player);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       DRAW      		                 	  ┃
@@ -69,7 +70,7 @@ void			correct_dist(t_game *game, t_rayinfo *ray,
 					int tex_index, int i);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
- *  ┃                       RAYCAST      		                  ┃
+ *  ┃                       RAYCAST                               ┃
  * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
@@ -79,7 +80,11 @@ void			put_pixel(int x, int y, int color, t_game *game);
 void			clear_image(t_game *game);
 float			fixed_dist(float y1, float x2, float y2, t_game *game);
 
-// READ
+/* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ *  ┃                       READ                                  ┃
+ * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+*/
+
 char			**read_map(const char *path, char **map,
 					char *line, t_game *game);
 void			count_map(char **map, char **new_map, size_t *count);
@@ -101,9 +106,10 @@ void			load_all_textures(t_game *game);
  * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
  */
 
-int				parse_textures(char *line, t_texture *tex);
 bool			is_map_closed(char **map);
 bool			main_parser(char *av);
+int				parse_textures(char *line, t_texture *tex,
+					t_game *game);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       VIGNETTE	   		                  ┃
