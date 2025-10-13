@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:54:58 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 15:24:09 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/13 16:03:42 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	load_single_texture(t_game *game, int index, char *path)
 			&game->tex[index].width, &game->tex[index].height);
 	if (game->tex[index].img == NULL)
 	{
-		ft_putstr("Erro: Não foi possível carregar a textura: ");
+		ft_putstr("Error: Cannot open with this texture: ");
 		ft_putendl_fd(path, 1);
 		exit_error(game, 3);
 	}
