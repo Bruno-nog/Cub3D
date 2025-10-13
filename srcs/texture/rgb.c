@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:59:16 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 19:01:55 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:39:16 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	rgb_numbers(char *line, int	*floor_sky)
 	{
 		ft_putstr("Error: RGB values must be between 0 and 255.\n");
 		ft_free_split(split);
-		exit(1);
+		return (2);
 	}
 	*floor_sky = rgb_to_int(r, g, b);
 	ft_free_split(split);

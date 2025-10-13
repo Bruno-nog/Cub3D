@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/13 13:11:45 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:41:47 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int				key_release(int keycode, t_player *player);
 int				exit_game(t_game *game);
 bool			init_game(t_game *game, char *av);
 
-int				parse_textures(char *line, t_texture *tex);
+int				parse_textures(char *line, t_texture *tex,
+					t_game *game);
 void			find_player(char **map, t_player *player);
 
 void			draw_square(int x, int y, int size, int color);
