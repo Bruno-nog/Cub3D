@@ -6,11 +6,12 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/10 19:27:11 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:23:44 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <math.h>
 
 static void	try_move_x(t_player *player, float dx)
 {
@@ -50,11 +51,11 @@ static t_vec	player_angle_lateral(t_player *player,
 	if (player->key_right)
 	{
 		res.x += -sin_angle * (speed / 2.5f);
-		res.y +=  cos_angle * (speed / 2.5f);
+		res.y += cos_angle * (speed / 2.5f);
 	}
 	if (player->key_left)
 	{
-		res.x +=  sin_angle * (speed / 2.5f);
+		res.x += sin_angle * (speed / 2.5f);
 		res.y += -cos_angle * (speed / 2.5f);
 	}
 	return (res);
@@ -88,53 +89,23 @@ static void	player_angle(t_player *player,
 	try_move_y(player, dy);
 }
 
-void	draw_scene(t_game *game)
-{
-	t_player	*player;
-	float		fraction;
-	float		start_x;
-	int			i;
-
-	player = &game->player;
-	clear_image(game);
-	if (DEBUG)
-	{
-		draw_square(player->x, player->y, 10, 0x00FF00);
-		draw_map(game);
-	}
-	fraction = PI / 3 / WIDTH;
-	start_x = player->angle - PI / 6;
-	i = 0;
-	while (i < WIDTH)
-	{
-		draw_line(player, game, start_x, i);
-		start_x += fraction;
-		i++;
-	}
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-}
-
 void	move_player(t_player *player, double dt)
 {
-	float	speed;
-	float	angle_speed;
-	float	cos_angle;
-	float	sin_angle;
-	double	ds;
-	double	da;
+	t_move	m;
 
-	speed = 200.0f;
-	angle_speed = 1.55f;
-
-	ds = (double)speed * dt; da = (double)angle_speed * dt;
-	cos_angle = cos(player->angle); sin_angle = sin(player->angle);
-	if (player->left_rotate == true)
-		player->angle -= (float)da;
-	if (player->right_rotate == true)
-		player->angle += (float)da;
+	m.speed = 200.0f;
+	m.angle_speed = 1.55f;
+	m.ds = m.speed * (float)dt;
+	m.da = m.angle_speed * (float)dt;
+	m.cos_angle = cos(player->angle);
+	m.sin_angle = sin(player->angle);
+	if (player->left_rotate)
+		player->angle -= m.da;
+	if (player->right_rotate)
+		player->angle += m.da;
 	if (player->angle > 2 * PI)
 		player->angle -= 2 * PI;
 	if (player->angle < 0)
 		player->angle += 2 * PI;
-	player_angle(player, cos_angle, sin_angle, (float)ds);
+	player_angle(player, m.cos_angle, m.sin_angle, m.ds);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:03:25 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/08 16:19:13 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:21:57 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@ static bool	verify_type_file(char *av)
 	correct_file = ".cub";
 	i = 0;
 	if (ft_strnstr(&av[1], correct_file, argument_len))
-	{
-		printf("Its a cub");
 		return (true);
-	}
-	printf("Its not a cub");
 	return (false);
 }
 
@@ -36,6 +32,5 @@ bool	main_parser(char *av)
 {
 	if (!verify_type_file(&av[1]))
 		return (false);
-
 	return (true);
 }

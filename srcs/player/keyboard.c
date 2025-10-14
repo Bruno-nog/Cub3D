@@ -5,22 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/10 16:40:06 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/10 16:40:43 by brunogue         ###   ########.fr       */
+/*   Created: 2025/10/12 15:49:35 by brunogue          #+#    #+#             */
+/*   Updated: 2025/10/13 14:23:34 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
 
 void	init_player(t_player *player)
 {
-	player->row = 1;
-	player->column = 20;
-	player->x = player->column * BLOCK + BLOCK / 2;
-	player->y = player->row * BLOCK + BLOCK / 2;
-	// player->x = WIDTH / 2;
-	// player->y = HEIGHT / 2;
 	player->angle = PI / 2;
 	player->key_up = false;
 	player->key_down = false;

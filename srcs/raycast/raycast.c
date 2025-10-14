@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   Created: 2025/10/01 17:43:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/01 18:41:47 by brunogue         ###   ########.fr       */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/12 19:02:54 by brunogue          #+#    #+#             */
+/*   Updated: 2025/10/13 14:24:04 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stddef.h>
-
-
 
 void	put_pixel(int x, int y, int color, t_game *game)
 {
@@ -20,9 +20,8 @@ void	put_pixel(int x, int y, int color, t_game *game)
 
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return ;
-	brightness = game->vignette_map[y][x];
+	brightness = game->vig_map[y][x];
 	color = darken_color(color, brightness);
-
 	index = y * game->size_line + x * game->bpp / 8;
 	game->data[index] = color & 0xFF;
 	game->data[index + 1] = (color >> 8) & 0xFF;
@@ -35,42 +34,39 @@ void	clear_image(t_game *game)
 	int	x;
 
 	y = 0;
-	// game->ceiling = 0x0AD2FA;
-	game->floor = 0x240606;
-	// game->ceiling = 0x0F0F0F;
-	game->ceiling = 0x2E0707;
-	// game->floor = 0x1A0707;
 	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
 		{
 			if (y < HEIGHT / 2)
-				put_pixel(x, y, game->ceiling, game);
+				put_pixel(x, y, game->map_tex.ceiling, game);
 			else
-				put_pixel(x, y, game->floor, game);
+				put_pixel(x, y, game->map_tex.floor, game);
 			x++;
 		}
 		y++;
 	}
 }
 
-
-
-
 bool	init_game(t_game *game, char *av)
 {
 	char	**map;
-	size_t	count;
 	char	*line;
 
-	count = 0;
 	map = NULL;
 	line = NULL;
+	game->player.exit = 0;
+	game->map_tex.so = NULL;
+	game->map_tex.ea = NULL;
+	game->map_tex.we = NULL;
 	game->mlx = mlx_init();
-	game->map = read_map(av, map, count, line);
+	game->map = read_map(av, map, line, game);
 	if (game->map == NULL)
 		return (false);
+	find_player(game->map, &game->player);
+	if (game->player.exit == 1)
+		exit_error(game, 1);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp,
@@ -79,9 +75,9 @@ bool	init_game(t_game *game, char *av)
 	return (true);
 }
 
-static void get_map_size(t_game *game, int *w, int *h)
+static void	get_map_size(t_game *game, int *w, int *h)
 {
-	int i;
+	int	i;
 
 	*h = 0;
 	*w = 0;
@@ -98,21 +94,20 @@ static void get_map_size(t_game *game, int *w, int *h)
 	}
 }
 
-bool touch(float px, float py, t_game *game)
+bool	touch(float px, float py, t_game *game)
 {
-	int x;
-	int y;
-	int map_w;
-	int map_h;
+	int	x;
+	int	y;
+	int	map_w;
+	int	map_h;
 
 	if (!game || !game->map)
 		return (true);
 	get_map_size(game, &map_w, &map_h);
 	if (map_w == 0 || map_h == 0)
 		return (true);
-
-	x = (int)(px / BLOCK);
-	y = (int)(py / BLOCK);
+	x = (int)(px / BLK);
+	y = (int)(py / BLK);
 	if (x < 0 || y < 0 || x >= map_w || y >= map_h)
 		return (true);
 	return (game->map[y][x] == '1');

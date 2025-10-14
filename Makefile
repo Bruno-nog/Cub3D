@@ -31,15 +31,21 @@ endif
 SRCS = main.c \
 	raycast/distance.c \
 	raycast/raycast.c \
-	raycast/draws.c \
+	draw/draws.c \
+	draw/draw_rays.c \
+	draw/draw_walls.c \
 	exit_game.c \
 	parser/main_parse.c \
+	parser/map_parse.c \
+	parser/texture_parse.c \
+	texture/rgb.c \
+	texture/load_texture.c \
 	read/read_map.c \
 	read/utils_read.c \
 	vignette/vignette.c \
 	player/player.c \
-	player/keyboard.c \
-	textures.c
+	player/find_player.c \
+	player/keyboard.c 
 
 SRCS_FULL := $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_FULL))
@@ -73,4 +79,4 @@ fclean: clean
 re: fclean all
 
 valgrind: all
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(MAP)
+	valgrind --leak-check=full -s --show-leak-kinds=all --track-origins=yes ./$(NAME) $(MAP)
