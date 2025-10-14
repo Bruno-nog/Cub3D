@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/14 15:22:30 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:47:14 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,12 @@ static int	process_next_line(t_mapstate *st)
 	return (1);
 }
 
-char	**read_map(const char *path, char **map, char *line, t_game *game)
+char	**read_map(const char *path, char **map, t_game *game)
 {
 	int			fd;
 	t_mapstate	st;
 	int			res;
 
-	(void)line;
 	fd = open_map(path);
 	if (fd < 0)
 		return (NULL);
