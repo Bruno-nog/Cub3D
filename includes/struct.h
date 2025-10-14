@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 14:23:56 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:51:31 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ typedef struct s_texture
 	char	*so;
 	char	*we;
 	char	*ea;
-
+	int		count_f;
+	int		count_c;
+	
 	int		floor;
 	int		ceiling;
 }	t_texture;

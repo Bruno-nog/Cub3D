@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:02:54 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 14:24:04 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:00:09 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ bool	init_game(t_game *game, char *av)
 	map = NULL;
 	line = NULL;
 	game->player.exit = 0;
+	game->tex->count_c = 0;
+	game->tex->count_f = 0;
 	game->map_tex.so = NULL;
 	game->map_tex.ea = NULL;
 	game->map_tex.we = NULL;
