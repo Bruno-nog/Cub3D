@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 14:24:15 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:30:38 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,26 @@ int	exit_error(t_game *game, int map)
 {
 	if (map == 1)
 		free_map(game->map);
-	if (map == 2)
+	else if (map == 2)
 	{
 		free_map(game->map);
 		mlx_destroy_image(game->mlx, game->img);
 		mlx_destroy_window(game->mlx, game->win);
 		destroy_textures(game);
 	}
+	else if (map == 3)
+	{
+		free_map(game->map);
+		mlx_destroy_image(game->mlx, game->img);
+		mlx_destroy_window(game->mlx, game->win);
+	}
 	free(game->map_tex.no);
 	free(game->map_tex.so);
 	free(game->map_tex.we);
 	free(game->map_tex.ea);
 	if (game->mlx)
-	{
 		free_mlx(game);
-		game->mlx = NULL;
-	}
-	exit(0);
+	exit(1);
 	return (0);
 }
 
@@ -90,10 +93,6 @@ int	exit_game(t_game *game)
 	free_vignette(game);
 	free_map(game->map);
 	destroy_textures(game);
-	free(game->map_tex.no);
-	free(game->map_tex.so);
-	free(game->map_tex.we);
-	free(game->map_tex.ea);
 	if (game->img)
 	{
 		mlx_destroy_image(game->mlx, game->img);

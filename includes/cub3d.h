@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/14 16:23:12 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:35:32 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void			move_player(t_player *player, double dt);
 void			find_player(char **map, t_player *player);
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_player *player);
+void			find_player(char **map, t_player *player);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       DRAW      		                 	  ┃
@@ -69,7 +70,7 @@ void			correct_dist(t_game *game, t_rayinfo *ray,
 					int tex_index, int i);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
- *  ┃                       RAYCAST      		                  ┃
+ *  ┃                       RAYCAST                               ┃
  * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
@@ -105,9 +106,11 @@ void			load_all_textures(t_game *game);
  * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
  */
 
-int				parse_textures(char *line, t_texture *tex);
 bool			is_map_closed(char **map);
 bool			main_parser(char *av);
+int				parse_textures(char *line, t_texture *tex,
+					t_game *game);
+
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       VIGNETTE	   		                  ┃

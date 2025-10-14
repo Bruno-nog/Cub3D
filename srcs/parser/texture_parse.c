@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:01:47 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/14 16:12:52 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:35:25 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,88 @@
 
 
 
-int	parse_textures(char *line, t_texture *tex)
-{
+// int	parse_textures(char *line, t_texture *tex)
+// {
 
+// 	if (ft_strncmp(line, "NO ", 3) == 0)
+// 	{
+// 		tex->no = ft_strdup(line + 3);
+// 		return (1);
+// 	}
+// 	else if (ft_strncmp(line, "SO ", 3) == 0)
+// 	{
+// 		tex->so = ft_strdup(line + 3);
+// 		return (1);
+// 	}
+// 	else if (ft_strncmp(line, "WE ", 3) == 0)
+// 	{
+// 		tex->we = ft_strdup(line + 3);
+// 		return (1);
+// 	}
+// 	else if (ft_strncmp(line, "EA ", 3) == 0)
+// 	{
+// 		tex->ea = ft_strdup(line + 3);
+// 		return (1);
+// 	}
+// 	if (ft_strncmp(line, "F ", 2) == 0)
+// 	{
+// 		tex->count_f++;
+// 		ft_printf("count floor\n");
+// 		if (tex->count_f > 2)
+// 		{
+// 			ft_printf("count floor error\n");
+// 			return (0);
+// 		}
+// 		return (rgb_numbers(line, &tex->floor));
+// 	}
+// 	else if (ft_strncmp(line, "C ", 2) == 0)
+// 	{
+// 		tex->count_c++;
+// 		ft_printf("count ceiling\n");
+// 		if (tex->count_c > 2)
+// 		{
+// 			ft_printf("count ceiling error\n");
+// 			return (0);
+// 		}
+// 		return (rgb_numbers(line, &tex->ceiling));
+// 	}
+// 	return (0);
+// }
+
+
+
+int	rgb_checker(char *line, t_texture *tex, t_game *game)
+{
+	int	error;
+
+	error = 0;
+	if (ft_strncmp(line, "F ", 2) == 0)
+	{
+		error = rgb_numbers(line, &tex->floor);
+		if (error == 2)
+		{
+			free(line);
+			exit_error(game, 0);
+		}
+		else
+			return (error);
+	}
+	else if (ft_strncmp(line, "C ", 2) == 0)
+	{
+		error = rgb_numbers(line, &tex->ceiling);
+		if (error == 2)
+		{
+			free(line);
+			exit_error(game, 0);
+		}
+		else
+			return (error);
+	}
+	return (error);
+}
+
+int	parse_textures(char *line, t_texture *tex, t_game *game)
+{
 	if (ft_strncmp(line, "NO ", 3) == 0)
 	{
 		tex->no = ft_strdup(line + 3);
@@ -67,27 +146,5 @@ int	parse_textures(char *line, t_texture *tex)
 		tex->ea = ft_strdup(line + 3);
 		return (1);
 	}
-	if (ft_strncmp(line, "F ", 2) == 0)
-	{
-		// tex->count_f++;
-		// ft_printf("count floor\n");
-		// if (tex->count_f > 2)
-		// {
-		// 	ft_printf("count floor error\n");
-		// 	return (0);
-		// }
-		return (rgb_numbers(line, &tex->floor));
-	}
-	else if (ft_strncmp(line, "C ", 2) == 0)
-	{
-		// tex->count_c++;
-		// ft_printf("count ceiling\n");
-		// if (tex->count_c > 2)
-		// {
-		// 	ft_printf("count ceiling error\n");
-		// 	return (0);
-		// }
-		return (rgb_numbers(line, &tex->ceiling));
-	}
-	return (0);
+	return (rgb_checker(line, tex, game));
 }

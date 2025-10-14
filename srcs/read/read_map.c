@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/14 16:22:31 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:36:34 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static int	process_next_line(t_mapstate *st)
 		free(clean);
 		return (-1);
 	}
-	if (parse_textures(clean, &st->game->map_tex) == 0 && clean[0] != '\0')
+	if (parse_textures(clean, &st->game->map_tex, st->game) == 0
+		&& clean[0] != '\0')
 	{
 		st->map = append_map_line(st->map, clean, &st->count, st->fd);
 		if (st->map == NULL)
@@ -115,7 +116,7 @@ int	check_extra_after_map(const char *path, t_game *game)
 			free(clean);
 			continue ;
 		}
-		if (parse_textures(clean, &game->map_tex) == 1)
+		if (parse_textures(clean, &game->map_tex, 0) == 1)
 		{
 			if (state == 1 || state == 2)
 			{
