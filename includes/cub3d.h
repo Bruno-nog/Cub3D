@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/14 16:49:29 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:41:44 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ bool			is_map_closed(char **map);
 bool			main_parser(char *av);
 int				parse_textures(char *line, t_texture *tex,
 					t_game *game);
+int				verify_directions(char *line);
 
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
