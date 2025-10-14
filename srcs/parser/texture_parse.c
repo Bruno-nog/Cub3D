@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:01:47 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/14 16:35:25 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:08:51 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ int	rgb_checker(char *line, t_texture *tex, t_game *game)
 	error = 0;
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
+		game->flo++;
 		error = rgb_numbers(line, &tex->floor);
-		if (error == 2)
+		if (error == 2 || game->flo > 1)
 		{
-			free(line);
 			exit_error(game, 0);
 		}
 		else
@@ -112,10 +112,10 @@ int	rgb_checker(char *line, t_texture *tex, t_game *game)
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
+		game->ceil++;
 		error = rgb_numbers(line, &tex->ceiling);
-		if (error == 2)
+		if (error == 2 || game->ceil > 1)
 		{
-			free(line);
 			exit_error(game, 0);
 		}
 		else
