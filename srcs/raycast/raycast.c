@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:02:54 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 16:03:36 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:30:23 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,16 @@ void	clear_image(t_game *game)
 bool	init_game(t_game *game, char *av)
 {
 	char	**map;
-	char	*line;
 
 	map = NULL;
-	line = NULL;
 	game->player.exit = 0;
-	game->map_tex.no = NULL;
+	// game->tex->count_c = 0;
+	// game->tex->count_f = 0;
 	game->map_tex.so = NULL;
 	game->map_tex.ea = NULL;
 	game->map_tex.we = NULL;
 	game->mlx = mlx_init();
-	game->map = read_map(av, map, line, game);
+	game->map = read_map(av, map, game);
 	if (game->map == NULL)
 		return (false);
 	find_player(game->map, &game->player);

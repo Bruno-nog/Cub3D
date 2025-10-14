@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 15:45:12 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:36:34 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,93 @@ static int	process_next_line(t_mapstate *st)
 	return (1);
 }
 
-char	**read_map(const char *path, char **map, char *line, t_game *game)
+int	check_extra_after_map(const char *path, t_game *game)
+{
+	int		fd;
+	char	*line;
+	char	*clean;
+	int		state;
+	int		j;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		perror("open");
+		return (-2);
+	}
+	state = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		clean = dup_line_no_newline(line);
+		free(line);
+		if (clean[0] == '\0')
+		{
+			if (state == 1)
+				state = 2;
+			free(clean);
+			continue ;
+		}
+		if (parse_textures(clean, &game->map_tex, 0) == 1)
+		{
+			if (state == 1 || state == 2)
+			{
+				free(clean);
+				close(fd);
+				return (-1);
+			}
+			free(clean);
+			continue ;
+		}
+		j = 0;
+		while (clean[j] == ' ')
+			j++;
+		if (clean[j] == '1' || clean[j] == '0' || clean[j] == 'N'
+			|| clean[j] == 'S' || clean[j] == 'E' || clean[j] == 'W')
+		{
+			if (state == 2)
+			{
+				free(clean);
+				close(fd);
+				return (-1);
+			}
+			state = 1;
+			free(clean);
+			continue ;
+		}
+		if (state == 1)
+		{
+			free(clean);
+			close(fd);
+			return (-1);
+		}
+		free(clean);
+	}
+	close(fd);
+	return (0);
+}
+
+static void	ft_after_map(const char *path, t_game *game, t_mapstate st)
+{
+	int	after_map;
+
+	after_map = check_extra_after_map(path, game);
+	if (after_map != 0)
+	{
+		ft_putstr("Error: extra content after map.\n");
+		free_map(st.map);
+		exit_error(game, 0);
+	}
+}
+
+char	**read_map(const char *path, char **map, t_game *game)
 {
 	int			fd;
 	t_mapstate	st;
 	int			res;
 
-	(void)line;
 	fd = open_map(path);
 	if (fd < 0)
 		return (NULL);
@@ -107,54 +187,42 @@ char	**read_map(const char *path, char **map, char *line, t_game *game)
 	close(fd);
 	if (res == -1)
 		return (NULL);
+	ft_after_map(path, game, st);
 	if (is_map_closed(st.map) == 0)
 	{
-		ft_putstr("Error: Map is not closed by walls.\n");
+		ft_putstr("Error: something wrong in the map.\n");
 		free_map(st.map);
 		exit_error(game, 0);
 	}
 	return (st.map);
 }
 
+
 // char	**read_map(const char *path, char **map, char *line, t_game *game)
 // {
-// 	int		fd;
-// 	char	**new_map;
-// 	char	*clean;
-// 	size_t	count;
+// 	int			fd;
+// 	t_mapstate	st;
+// 	int			res;
 
-// 	count = 0;
+// 	(void)line;
 // 	fd = open_map(path);
 // 	if (fd < 0)
 // 		return (NULL);
-// 	line = get_next_line(fd);
-// 	while (line != NULL)
-// 	{
-// 		clean = dup_line_no_newline(line);
-// 		free(line);
-// 		if (!verify_clean(map, clean, fd))
-// 			return (NULL);
-// 		if (!parse_textures(clean, &game->map_tex) && clean[0] != '\0')
-// 		{
-// 			new_map = malloc((count + 2) * sizeof(char *));
-// 			if (!verify_map(map, new_map, clean, fd))
-// 				return (NULL);
-// 			count_map(map, new_map, &count);
-// 			new_map[count] = clean;
-// 			new_map[count + 1] = NULL;
-// 			free(map);
-// 			map = new_map;
-// 			count++;
-// 		}
-// 		else
-// 			free(clean);
-// 		line = get_next_line(fd);
-// 	}
+// 	st.map = map;
+// 	st.count = 0;
+// 	st.game = game;
+// 	st.fd = fd;
+// 	res = 1;
+// 	while (res == 1)
+// 		res = process_next_line(&st);
 // 	close(fd);
-// 	if (!is_map_closed(map))
+// 	if (res == -1)
+// 		return (NULL);
+// 	if (is_map_closed(st.map) == 0)
 // 	{
 // 		ft_putstr("Error: Map is not closed by walls.\n");
-// 		exit(1);
+// 		free_map(st.map);
+// 		exit_error(game, 0);
 // 	}
-// 	return (map);
+// 	return (st.map);
 // }
