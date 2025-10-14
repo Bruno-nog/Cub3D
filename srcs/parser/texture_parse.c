@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:01:47 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/14 16:35:25 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:20:00 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,4 +147,21 @@ int	parse_textures(char *line, t_texture *tex, t_game *game)
 		return (1);
 	}
 	return (rgb_checker(line, tex, game));
+}
+
+int	verify_directions(char *line)
+{
+	if (ft_strncmp(line, "NO ", 3) == 0)
+		return (1);
+	else if (ft_strncmp(line, "SO ", 3) == 0)
+		return (1);
+	else if (ft_strncmp(line, "WE ", 3) == 0)
+		return (1);
+	else if (ft_strncmp(line, "EA ", 3) == 0)
+		return (1);
+	if (ft_strncmp(line, "F ", 2) == 0)
+		return (1);
+	else if (ft_strncmp(line, "C ", 2) == 0)
+		return (1);
+	return (0);
 }
