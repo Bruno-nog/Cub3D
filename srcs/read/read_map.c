@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/14 16:57:31 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:06:19 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,18 +155,18 @@ int	check_extra_after_map(const char *path, t_game *game)
 	return (0);
 }
 
-static void	ft_after_map(const char *path, t_game *game, t_mapstate st)
-{
-	int	after_map;
+// static void	ft_after_map(const char *path, t_game *game, t_mapstate st)
+// {
+// 	int	after_map;
 
-	after_map = check_extra_after_map(path, game);
-	if (after_map != 0)
-	{
-		ft_putstr("Error: extra content after map.\n");
-		free_map(st.map);
-		exit_error(game, 0);
-	}
-}
+// 	after_map = check_extra_after_map(path, game);
+// 	if (after_map != 0)
+// 	{
+// 		ft_putstr("Error: extra content after map.\n");
+// 		free_map(st.map);
+// 		exit_error(game, 0);
+// 	}
+// }
 
 char	**read_map(const char *path, char **map, t_game *game)
 {
@@ -187,7 +187,7 @@ char	**read_map(const char *path, char **map, t_game *game)
 	close(fd);
 	if (res == -1)
 		return (NULL);
-	ft_after_map(path, game, st);
+	// ft_after_map(path, game, st);
 	if (is_map_closed(st.map) == 0)
 	{
 		ft_putstr("Error: something wrong in the map.\n");

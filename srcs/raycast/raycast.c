@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:02:54 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/14 16:57:15 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:08:55 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ bool	init_game(t_game *game, char *av)
 
 	map = NULL;
 	game->player.exit = 0;
-	// game->tex->count_c = 0;
-	// game->tex->count_f = 0;
+	game->flo = 0;
+	game->ceil = 0;
 	game->map_tex.so = NULL;
 	game->map_tex.ea = NULL;
 	game->map_tex.we = NULL;
@@ -65,7 +65,7 @@ bool	init_game(t_game *game, char *av)
 	if (game->map == NULL)
 		return (false);
 	find_player(game->map, &game->player);
-	if (game->player.exit == 1)
+	if (game->player.exit == 1 || game->flo == 0 || game->ceil == 0)
 		exit_error(game, 1);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
