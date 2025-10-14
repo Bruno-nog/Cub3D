@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/13 15:59:47 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:23:12 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ float			fixed_dist(float y1, float x2, float y2, t_game *game);
  */
 
 char			**read_map(const char *path, char **map,
-					char *line, t_game *game);
+					t_game *game);
 void			count_map(char **map, char **new_map, size_t *count);
 bool			verify_clean(char **map, char *clean, int fd);
 char			*dup_line_no_newline(const char *s);
