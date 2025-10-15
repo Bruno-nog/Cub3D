@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 19:18:37 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 16:25:46 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:06:07 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	open_map(const char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("open");
+		ft_putstr("Error: Invalid File");;
 		return (-1);
 	}
 	return (fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:03:25 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 14:21:57 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:08:04 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static bool	verify_type_file(char *av)
 bool	main_parser(char *av)
 {
 	if (!verify_type_file(&av[1]))
+	{
+		ft_putstr("Error: Invalid file");
 		return (false);
+	}
 	return (true);
 }

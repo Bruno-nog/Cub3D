@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 16:33:34 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:06:03 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	ft_after_map(int fd, t_game *game, t_mapstate st)
 	{
 		ft_putstr("Error: extra content after map.\n");
 		free_map(st.map);
-		exit_error(game, 0);
+		exit_error(game, 0, 1);
 	}
 }
 
@@ -115,7 +115,7 @@ char	**read_map(const char *path, char **map, t_game *game)
 	{
 		ft_putstr("Error: something wrong in the map.\n");
 		free_map(st.map);
-		exit_error(game, 0);
+		exit_error(game, 0, 1);
 	}
 	return (st.map);
 }
