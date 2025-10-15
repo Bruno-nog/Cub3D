@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:01:47 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/15 17:03:48 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/15 18:26:49 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	rgb_checker(char *line, t_texture *tex, t_game *game)
 		if (error == 2 || game->flo > 1)
 		{
 			free(line);
-			ft_putstr("Error: Multiple Floor (F) definitions found\n");
+			if (game->flo > 1)
+				ft_putstr("Error: Multiple Floor (F) definitions found\n");
 			exit_error(game, 0, 1);
 		}
 		else
@@ -37,7 +38,8 @@ int	rgb_checker(char *line, t_texture *tex, t_game *game)
 		if (error == 2 || game->ceil > 1)
 		{
 			free(line);
-			ft_putstr("Error: Multiple Ceiling (C) definitions found\n");
+			if (game->ceil > 1)
+				ft_putstr("Error: Multiple Ceiling (C) definitions found\n");
 			exit_error(game, 0, 1);
 		}
 		else
