@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:42:22 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/14 13:36:52 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:45:04 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	draw_loop(t_game *game, t_player *player)
 	if (dt > 0.1)
 		dt = 0.1;
 	last = now;
-	move_player(player, dt);
+	player_move(player, dt);
 	draw_scene(game);
 	return (0);
 }

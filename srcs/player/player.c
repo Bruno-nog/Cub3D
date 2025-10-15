@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:53:52 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/13 14:23:44 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:45:04 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	player_angle(t_player *player,
 	try_move_y(player, dy);
 }
 
-void	move_player(t_player *player, double dt)
+void	player_move(t_player *player, double dt)
 {
 	t_move	m;
 
