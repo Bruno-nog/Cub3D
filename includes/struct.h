@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 13:52:44 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:02:40 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_texture
 	char	*ea;
 	int		count_f;
 	int		count_c;
-	
 	int		floor;
 	int		ceiling;
 }	t_texture;

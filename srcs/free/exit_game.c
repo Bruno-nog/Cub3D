@@ -6,47 +6,11 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 14:52:43 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:02:46 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	free_mlx(t_game *game)
-{
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
-}
-
-void	free_map(char **map)
-{
-	int	i;
-
-	if (!map)
-		return ;
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
-void	free_vignette(t_game *game)
-{
-	int	y;
-
-	if (!game->vig_map)
-		return ;
-	y = 0;
-	while (y < HEIGHT)
-	{
-		free(game->vig_map[y]);
-		y++;
-	}
-	free(game->vig_map);
-}
 
 void	destroy_textures(t_game *game)
 {

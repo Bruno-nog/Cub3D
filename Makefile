@@ -34,7 +34,8 @@ SRCS = main.c \
 	draw/draws.c \
 	draw/draw_rays.c \
 	draw/draw_walls.c \
-	exit_game.c \
+	free/exit_game.c \
+	free/free.c \
 	parser/main_parse.c \
 	parser/map_parse.c \
 	parser/texture_parse.c \
@@ -42,6 +43,7 @@ SRCS = main.c \
 	texture/load_texture.c \
 	read/read_map.c \
 	read/utils_read.c \
+	read/after_map.c \
 	vignette/vignette.c \
 	player/player.c \
 	player/find_player.c \
@@ -79,4 +81,4 @@ fclean: clean
 re: fclean all
 
 valgrind: all
-	valgrind --leak-check=full -s --show-leak-kinds=all --track-origins=yes ./$(NAME) $(MAP)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(MAP)
