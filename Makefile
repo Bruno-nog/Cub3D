@@ -31,6 +31,7 @@ endif
 SRCS = main.c \
 	raycast/distance.c \
 	raycast/raycast.c \
+	raycast/init_raycast.c \
 	draw/draws.c \
 	draw/draw_rays.c \
 	draw/draw_walls.c \
@@ -39,6 +40,7 @@ SRCS = main.c \
 	parser/main_parse.c \
 	parser/map_parse.c \
 	parser/texture_parse.c \
+	parser/directions.c \
 	texture/rgb.c \
 	texture/load_texture.c \
 	read/read_map.c \
