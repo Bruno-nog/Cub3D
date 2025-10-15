@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:01:47 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/14 19:41:41 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:34:05 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@
 // 	return (0);
 // }
 
-
-
 int	rgb_checker(char *line, t_texture *tex, t_game *game)
 {
 	int	error;
@@ -105,6 +103,7 @@ int	rgb_checker(char *line, t_texture *tex, t_game *game)
 		error = rgb_numbers(line, &tex->floor);
 		if (error == 2 || game->flo > 1)
 		{
+			free(line);
 			exit_error(game, 0);
 		}
 		else
@@ -116,6 +115,7 @@ int	rgb_checker(char *line, t_texture *tex, t_game *game)
 		error = rgb_numbers(line, &tex->ceiling);
 		if (error == 2 || game->ceil > 1)
 		{
+			free(line);
 			exit_error(game, 0);
 		}
 		else

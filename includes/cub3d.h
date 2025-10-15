@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/14 19:41:44 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:36:34 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,12 @@ float			fixed_dist(float y1, float x2, float y2, t_game *game);
 
 char			**read_map(const char *path, char **map,
 					t_game *game);
+int				open_map(const char *path);
 void			count_map(char **map, char **new_map, size_t *count);
 bool			verify_clean(char **map, char *clean, int fd);
 char			*dup_line_no_newline(const char *s);
+int 			check_extra_after_map(int fd, int state, char *line);
+int				encounter_directions(char *clean, int state);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       TEXTURE	      		                  ┃
@@ -121,16 +124,21 @@ int				verify_directions(char *line);
 int				darken_color(int color, float factor);
 void			init_vignette(t_game *game);
 
-/* --- main --- */
-t_global		*gg(void);
+/* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ *  ┃                       FREE		   		                  ┃
+ * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ */
 
-/* --- exit_game --- */
 int				exit_game(t_game *game);
 void			free_map(char **map);
 void			free_vignette(t_game *game);
 void			destroy_textures(t_game *game);
 int				exit_game(t_game *game);
 int				exit_error(t_game *game, int map);
+
+/* --- main --- */
+t_global		*gg(void);
+
 
 bool			is_map_closed(char **map);
 
