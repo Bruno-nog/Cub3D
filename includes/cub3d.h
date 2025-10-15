@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/15 17:45:04 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:57:20 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,10 @@ bool			main_parser(char *av);
 int				parse_textures(char *line, t_texture *tex,
 					t_game *game);
 int				verify_directions(char *line);
+void			north_direction(t_game *game, t_texture *tex, char *line);
+void			south_direction(t_game *game, t_texture *tex, char *line);
+void			west_direction(t_game *game, t_texture *tex, char *line);
+void			east_direction(t_game *game, t_texture *tex, char *line);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       VIGNETTE	   		                  ┃
