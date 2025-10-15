@@ -6,11 +6,24 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 19:18:37 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/14 19:43:28 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:25:46 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	open_map(const char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		perror("open");
+		return (-1);
+	}
+	return (fd);
+}
 
 void	count_map(char **map, char **new_map, size_t *count)
 {
