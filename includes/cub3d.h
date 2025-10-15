@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/15 16:38:14 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:40:35 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int				open_map(const char *path);
 void			count_map(char **map, char **new_map, size_t *count);
 bool			verify_clean(char **map, char *clean, int fd);
 char			*dup_line_no_newline(const char *s);
-int 			check_extra_after_map(int fd, int state, char *line);
+int				check_extra_after_map(int fd, int state, char *line);
 int				encounter_directions(char *clean, int state);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -114,7 +114,6 @@ bool			main_parser(char *av);
 int				parse_textures(char *line, t_texture *tex,
 					t_game *game);
 int				verify_directions(char *line);
-
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       VIGNETTE	   		                  ┃
@@ -139,8 +138,5 @@ int				exit_error(t_game *game, int map);
 
 /* --- main --- */
 t_global		*gg(void);
-
-
-bool			is_map_closed(char **map);
 
 #endif
