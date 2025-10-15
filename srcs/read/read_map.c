@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 17:04:02 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:06:03 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,6 @@ static bool	verify_map(char **map, char **new_map, char *clean, int fd)
 		return (false);
 	}
 	return (true);
-}
-
-static int	open_map(const char *path)
-{
-	int	fd;
-
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr("Error: Invalid File");
-		// perror("open");
-		return (-1);
-	}
-	return (fd);
 }
 
 static char	**append_map_line(char **map, char *clean, size_t *count, int fd)
