@@ -31,6 +31,7 @@ endif
 SRCS = main.c \
 	raycast/distance.c \
 	raycast/raycast.c \
+	raycast/init_raycast.c \
 	draw/draws.c \
 	draw/draw_rays.c \
 	draw/draw_walls.c \
