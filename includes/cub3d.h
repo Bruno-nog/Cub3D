@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/15 17:05:26 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:57:20 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
  */
 
 void			init_player(t_player *player);
-void			move_player(t_player *player, double dt);
+void			player_move(t_player *player, double dt);
 void			find_player(char **map, t_player *player);
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_player *player);
@@ -114,6 +114,10 @@ bool			main_parser(char *av);
 int				parse_textures(char *line, t_texture *tex,
 					t_game *game);
 int				verify_directions(char *line);
+void			north_direction(t_game *game, t_texture *tex, char *line);
+void			south_direction(t_game *game, t_texture *tex, char *line);
+void			west_direction(t_game *game, t_texture *tex, char *line);
+void			east_direction(t_game *game, t_texture *tex, char *line);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       VIGNETTE	   		                  ┃
