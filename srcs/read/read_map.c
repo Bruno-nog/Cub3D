@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/16 14:46:35 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:44:20 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,54 +74,50 @@ static int	process_next_line(t_mapstate *st)
 	return (1);
 }
 
-static void	ft_after_map(int fd, t_game *game, t_mapstate st)
+static int	process_and_validate(t_mapstate *st, int fd, t_game *game)
 {
-	int		after_map;
-	int		state;
-	char	*line;
+	int	res;
 
-	state = 0;
-	line = NULL;
-	after_map = check_extra_after_map(fd, state, line);
-	if (after_map != 0)
+	res = 1;
+	while (res == 1)
+		res = process_next_line(st);
+	ft_after_map(fd, game, *st);
+	if (st->map == NULL)
 	{
-		ft_putstr("Error: extra content after map.\n");
-		free_map(st.map);
-		exit_error(game, 0, 1);
+		ft_printf("Empty map\n");
+		exit_error(game, 0 , 1);
+		return (-1);
 	}
+	close(fd);
+	if (res == -1)
+		return (-1);
+	if (is_map_closed(st->map) == 0)
+	{
+		ft_putstr("Error: something wrong in the map.\n");
+		free_map(st->map);
+		exit_error(game, 0, 1);
+		return (-1);
+	}
+	return (0);
 }
 
 char	**read_map(const char *path, char **map, t_game *game)
 {
 	int			fd;
 	t_mapstate	st;
-	int			res;
 
 	fd = open_map(path);
 	if (fd < 0)
+	{
 		return (NULL);
+	}
 	st.map = map;
 	st.count = 0;
 	st.game = game;
 	st.fd = fd;
-	res = 1;
-	while (res == 1)
-		res = process_next_line(&st);
-	ft_after_map(fd, game, st);
-	if (!st.map)
+	if (process_and_validate(&st, fd, game) == -1)
 	{
-		ft_printf("Empty map\n");
-		exit_game(game);
 		return (NULL);
-	}
-	close(fd);
-	if (res == -1)
-		return (NULL);
-	if (is_map_closed(st.map) == 0)
-	{
-		ft_putstr("Error: something wrong in the map.\n");
-		free_map(st.map);
-		exit_error(game, 0, 1);
 	}
 	return (st.map);
 }

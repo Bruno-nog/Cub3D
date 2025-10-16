@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/16 14:11:11 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:34:33 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ char			*dup_line_no_newline(const char *s);
 int				check_extra_after_map(int fd, int state, char *line);
 int				encounter_directions(char *clean, int state);
 char			*value_from_line(const char *line);
+void			ft_after_map(int fd, t_game *game, t_mapstate st);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       TEXTURE	      		                  ┃
