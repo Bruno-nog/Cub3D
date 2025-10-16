@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:49:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 17:02:40 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 18:59:37 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ typedef struct s_texture
 	int		ceiling;
 }	t_texture;
 
+typedef struct s_move
+{
+	float	speed;
+	float	angle_speed;
+	float	ds;
+	float	da;
+	float	cos_angle;
+	float	sin_angle;
+}	t_move;
+
 typedef struct s_player
 {
 	float	x;
@@ -53,6 +63,7 @@ typedef struct s_player
 	int		column;
 	int		row;
 
+	t_move	m;
 	int		exit;
 }	t_player;
 
@@ -85,16 +96,6 @@ typedef struct s_global
 	char	**map;
 	t_game	game;
 }	t_global;
-
-typedef struct s_move
-{
-	float	speed;
-	float	angle_speed;
-	float	ds;
-	float	da;
-	float	cos_angle;
-	float	sin_angle;
-}	t_move;
 
 typedef struct s_vec
 {

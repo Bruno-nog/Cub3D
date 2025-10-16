@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 18:56:41 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 12:41:58 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 19:16:49 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ static bool	counter_player(int *player_count)
 	return (true);
 }
 
+static void	set_player_orientation(t_player *player, char orient)
+{
+	if (orient == 'N')
+		player->angle = -PI / 2;
+	else if (orient == 'S')
+		player->angle = PI / 2;
+	else if (orient == 'E')
+		player->angle = 0.0;
+	else if (orient == 'W')
+		player->angle = PI;
+}
+
 static void	handle_player_at(char **map, t_player *player,
 				t_pos *pos, int *player_count)
 {
@@ -45,6 +57,7 @@ static void	handle_player_at(char **map, t_player *player,
 		player->column = pos->col;
 		player->x = pos->col * BLK + BLK / 2;
 		player->y = pos->row * BLK + BLK / 2;
+		set_player_orientation(player, c);
 		map[pos->row][pos->col] = '0';
 	}
 }
