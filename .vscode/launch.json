@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/nfs/homes/ratanaka/42_SP/Milestones/Milestone_4/Cub3D/srcs/draw",
-      "program": "/nfs/homes/ratanaka/42_SP/Milestones/Milestone_4/Cub3D/srcs/draw/build/Debug/outDebug",
+      "cwd": "/nfs/homes/ratanaka/42_SP/Milestones/Milestone_4/Cub3D/srcs/texture",
+      "program": "/nfs/homes/ratanaka/42_SP/Milestones/Milestone_4/Cub3D/srcs/texture/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

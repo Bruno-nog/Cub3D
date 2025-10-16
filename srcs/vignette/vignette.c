@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vignette.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:25:22 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/12 19:39:19 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/16 17:56:22 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,41 +98,3 @@ void	init_vignette(t_game *game)
 	max_dist = WIDTH * 0.35f;
 	fill_vignette(game, max_dist);
 }
-
-// void	init_vignette(t_game *game)
-// {
-// 	int		x;
-// 	int		y;
-// 	float	dist;
-// 	float	max_dist;
-// 	float	factor;
-
-// 	game->vig_map = malloc(sizeof(float *) * HEIGHT);
-// 	if (!game->vig_map)
-// 		return ;
-// 	y = 0;
-// 	while (y < HEIGHT)
-// 	{
-// 		game->vig_map[y] = malloc(sizeof(float) * WIDTH);
-// 		y++;
-// 	}
-// 	max_dist = WIDTH * 0.35;
-// 	y = 0;
-// 	while (y < HEIGHT)
-// 	{
-// 		x = 0;
-// 		while (x < 1280)
-// 		{
-// 			dist = sqrt(pow(x - (WIDTH / 2.0), 2) + pow(y - (HEIGHT / 2.0), 2));
-// 			game->vig_map[y][x] = 1.0 - (dist / max_dist);
-// 			factor = 1 - (dist / max_dist);
-// 			if (factor < 0.2)
-// 				factor = 0.2;
-// 			if (factor > 1.5)
-// 				factor = 1.5;
-// 			game->vig_map[y][x] = factor;
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
