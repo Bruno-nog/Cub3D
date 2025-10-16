@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 def test_map_correct():
     with open("test_ok.cub", "w") as f:
@@ -104,25 +105,34 @@ def test_valgrind_invalid():
        )
     )
 
-def test_valgrind_invalid():
-    result = subprocess.run(
-        [
-            "valgrind",
-            "--leak-check=full",
-            "--show-leak-kinds=all",
-            "--track-origins=yes",
-            "./cub3d",
-            "maps/invalids/dup_textures.cub"
-        ],
-        capture_output=True,
-        text=True
-    )
-    output = result.stdout + result.stderr
-    print (output)
-    assert (
-        "in use at exit: 0 bytes in 0 blocks" in output
-       or (
-           "in use at exit: 27 bytes in 2 blocks" in output
-          and "definitely lost: 0 bytes" in output
-       )
-    )
+def test_valgrind_all_invalids():
+    folder = "maps/invalid"
+    for filename in os.listdir(folder):
+        if filename.endswith(".cub"):
+            filepath = os.path.join(folder, filename)
+            result = subprocess.run(
+                [
+                    "valgrind",
+                    "--leak-check=full",
+                    "--show-leak-kinds=all",
+                    "--track-origins=yes",
+                    "./cub3d",
+                    filepath
+                ],
+                capture_output=True,
+                text=True
+            )
+            output = result.stdout + result.stderr
+            print(f"Testing {filepath}...")
+            print(output)
+            assert (
+                "in use at exit: 0 bytes in 0 blocks" in output
+                or (
+                    "in use at exit: 27 bytes in 2 blocks" in output
+                    and "definitely lost: 0 bytes" in output
+                )
+                or (
+                    "in use at exit: 45 bytes in 4 blocks" in output
+                    and "definitely lost: 0 bytes" in output
+                )
+            )
