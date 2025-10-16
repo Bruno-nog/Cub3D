@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:59:16 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/16 16:30:19 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 17:07:47 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	rgb_errors_type(int type_error, char **split)
 	}
 	ft_putstr("Error: No values for Floor or Ceiling.\n");
 	ft_free_split(split);
-	return (0);
+	return (2);
 }
 
 int	rgb_numbers(char *line, int	*floor_ceiling)
@@ -86,7 +86,7 @@ int	rgb_numbers(char *line, int	*floor_ceiling)
 	count = 0;
 	split = ft_split(skip_to_value(line), ',');
 	if (!split || !split[0] || !split[1] || !split[2])
-		rgb_errors_type(0, split);
+		return (rgb_errors_type(0, split));
 	while (split[count])
 		count++;
 	if (count != 3)
