@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 18:32:10 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:43:29 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,11 @@ char	**read_map(const char *path, char **map, t_game *game)
 	res = 1;
 	while (res == 1)
 		res = process_next_line(&st);
+	if (st.map == NULL)
+	{
+		ft_printf("Empty map\n");
+		exit_error(game, 0, 1);
+	}
 	ft_after_map(fd, game, st);
 	close(fd);
 	if (res == -1)
