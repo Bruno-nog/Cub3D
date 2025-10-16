@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:49:35 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 14:23:34 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/16 19:22:13 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_player(t_player *player)
 {
-	player->angle = PI / 2;
 	player->key_up = false;
 	player->key_down = false;
 	player->key_right = false;

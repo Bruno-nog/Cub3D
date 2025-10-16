@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/16 18:02:59 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 18:29:13 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ static int	process_and_validate(t_mapstate *st, int fd, t_game *game)
 	close(fd);
 	if (res == -1)
 		return (-1);
-	if (is_map_closed(st->map) == 0)
-	{
-		ft_putstr("Error: something wrong in the map.\n");
-		free_map(st->map);
-		exit_error(game, 0, 1);
-		return (-1);
-	}
+	// if (is_map_closed(st->map) == 0)
+	// {
+	// 	ft_putstr("Error: something wrong in the map.\n");
+	// 	free_map(st->map);
+	// 	exit_error(game, 0, 1);
+	// 	return (-1);
+	// }
 	return (0);
 }
 
