@@ -1,10 +1,10 @@
-NO assets/texture/bendypink.xpm
-SO assets/texture/bendygreen.xpm
-WE assets/texture/bendywhick.xpm
-EA assets/texture/bendy.xpm
+NO assets/texture/homer.xpm
+SO assets/texture/homer.xpm
+WE assets/texture/homer.xpm
+EA assets/texture/homer.xpm
 
-C 224,227,68
-F 255,227,43
+C 87,150,11
+F 96,163,15
 
 1111111111111111111
 1001000000100000001
