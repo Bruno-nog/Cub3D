@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/16 17:59:34 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 18:02:59 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	process_and_validate(t_mapstate *st, int fd, t_game *game)
 	ft_after_map(fd, game, *st);
 	if (st->map == NULL)
 	{
-		ft_putstr("Empty map\n");
+		ft_putstr("Error: Empty map\n");
 		exit_error(game, 0, 1);
 		return (-1);
 	}
