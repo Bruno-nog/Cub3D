@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/16 15:44:20 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/16 16:20:39 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	process_and_validate(t_mapstate *st, int fd, t_game *game)
 	if (st->map == NULL)
 	{
 		ft_printf("Empty map\n");
-		exit_error(game, 0 , 1);
+		exit_error(game, 0, 1);
 		return (-1);
 	}
 	close(fd);
