@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/16 16:17:12 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 20:49:09 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,32 +47,80 @@ static char	**append_map_line(char **map, char *clean, size_t *count, int fd)
 	return (new_map);
 }
 
-static int	process_next_line(t_mapstate *st)
+char *trim_copy(const char *s)
 {
-	char	*line;
-	char	*clean;
+    int start;
+    int end;
+    int len;
+    char *out;
+    int i;
 
-	line = get_next_line(st->fd);
-	if (line == NULL)
-		return (0);
-	clean = dup_line_no_newline(line);
-	free(line);
-	if (verify_clean(st->map, clean, st->fd) == 0)
-	{
-		free(clean);
-		return (-1);
-	}
-	if (parse_textures(clean, &st->game->map_tex, st->game) == 0
-		&& clean[0] != '\0')
-	{
-		st->map = append_map_line(st->map, clean, &st->count, st->fd);
-		if (st->map == NULL)
-			return (-1);
-	}
-	else
-		free(clean);
-	return (1);
+    if (s == NULL)
+        return (NULL);
+    start = 0;
+    while (s[start] == ' ' || s[start] == '\t')
+        start++;
+    len = 0;
+    while (s[start + len])
+        len++;
+    if (len == 0)
+    {
+        out = malloc(1);
+        if (out == NULL)
+            return (NULL);
+        out[0] = '\0';
+        return (out);
+    }
+    end = start + len - 1;
+    while (end >= start && (s[end] == ' ' || s[end] == '\t' || s[end] == '\r'))
+        end--;
+    i = 0;
+    out = malloc((end - start + 2));
+    if (out == NULL)
+        return (NULL);
+    while (start <= end)
+    {
+        out[i++] = s[start++];
+    }
+    out[i] = '\0';
+    return (out);
 }
+
+static int process_next_line(t_mapstate *st)
+{
+    char    *line;
+    char    *clean;
+    char    *trimmed;
+
+    line = get_next_line(st->fd);
+    if (line == NULL)
+        return (0);
+    clean = dup_line_no_newline(line);
+    free(line);
+    trimmed = trim_copy(clean);
+    free(clean);
+    if (trimmed == NULL)
+    {
+        perror("malloc");
+        return (-1);
+    }
+    if (verify_clean(st->map, trimmed, st->fd) == 0)
+    {
+        free(trimmed);
+        return (-1);
+    }
+    if (parse_textures(trimmed, &st->game->map_tex, st->game) == 0
+        && trimmed[0] != '\0')
+    {
+        st->map = append_map_line(st->map, trimmed, &st->count, st->fd);
+        if (st->map == NULL)
+            return (-1);
+    }
+    else
+        free(trimmed);
+    return (1);
+}
+
 
 static int	process_and_validate(t_mapstate *st, int fd, t_game *game)
 {
