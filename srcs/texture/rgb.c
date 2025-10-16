@@ -6,7 +6,7 @@
 /*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:59:16 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/16 16:10:16 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 16:30:19 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,21 @@ static int	rgb_errors_type(int type_error, char **split)
 		ft_free_split(split);
 		return (2);
 	}
-	if (type_error == 2)
+	else if (type_error == 2)
 	{
-		ft_putstr("Error: There more than 3 args in FLoor or Ceiling\n");
+		ft_putstr("Error: Floor or Ceiling color ");
+		ft_putstr("must have exactly 3 values (R,G,B).\n");
 		ft_free_split(split);
 		return (2);
 	}
-	if (type_error == 3)
+	else if (type_error == 3)
 	{
-		ft_putstr("Error: the 3 numbers cant be a non-numbers\n");
+		ft_putstr("Error: RGB values must be numbers.\n");
 		ft_free_split(split);
 		return (2);
 	}
+	ft_putstr("Error: No values for Floor or Ceiling.\n");
+	ft_free_split(split);
 	return (0);
 }
 
@@ -83,7 +86,7 @@ int	rgb_numbers(char *line, int	*floor_ceiling)
 	count = 0;
 	split = ft_split(skip_to_value(line), ',');
 	if (!split || !split[0] || !split[1] || !split[2])
-		return (0);
+		rgb_errors_type(0, split);
 	while (split[count])
 		count++;
 	if (count != 3)
