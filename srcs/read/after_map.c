@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 16:24:27 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 16:33:17 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:35:39 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,21 @@ int	check_extra_after_map(int fd, int state, char *line)
 		free(clean);
 	}
 	return (0);
+}
+
+void	ft_after_map(int fd, t_game *game, t_mapstate st)
+{
+	int		after_map;
+	int		state;
+	char	*line;
+
+	state = 0;
+	line = NULL;
+	after_map = check_extra_after_map(fd, state, line);
+	if (after_map != 0)
+	{
+		ft_putstr("Error: extra content after map.\n");
+		free_map(st.map);
+		exit_error(game, 0, 1);
+	}
 }
