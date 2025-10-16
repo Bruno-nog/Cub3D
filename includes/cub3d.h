@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/15 17:57:20 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/16 14:11:11 by ratanaka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ bool			verify_clean(char **map, char *clean, int fd);
 char			*dup_line_no_newline(const char *s);
 int				check_extra_after_map(int fd, int state, char *line);
 int				encounter_directions(char *clean, int state);
+char			*value_from_line(const char *line);
 
 /* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  *  ┃                       TEXTURE	      		                  ┃
