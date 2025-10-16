@@ -28,7 +28,7 @@ static bool	verify_argument(int ac)
 {
 	if (ac == 1)
 	{
-		ft_printf("Error: Missing arguments\n");
+		ft_putstr("Error: Missing arguments\n");
 		return (false);
 	}
 	return (true);
