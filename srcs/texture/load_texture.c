@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:54:58 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 14:51:38 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 16:58:06 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	ft_free_split(char **split)
 
 	i = 0;
 	if (!split)
+	{
 		return ;
+	}
 	while (split[i])
 	{
 		free(split[i]);
