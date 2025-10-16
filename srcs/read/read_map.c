@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:22:46 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 18:32:10 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/16 14:46:35 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,12 @@ char	**read_map(const char *path, char **map, t_game *game)
 	while (res == 1)
 		res = process_next_line(&st);
 	ft_after_map(fd, game, st);
+	if (!st.map)
+	{
+		ft_printf("Empty map\n");
+		exit_game(game);
+		return (NULL);
+	}
 	close(fd);
 	if (res == -1)
 		return (NULL);
