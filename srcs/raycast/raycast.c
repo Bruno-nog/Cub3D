@@ -6,12 +6,11 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:02:54 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 18:00:27 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/17 14:19:11 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stddef.h>
 
 void	put_pixel(int x, int y, int color, t_game *game)
 {

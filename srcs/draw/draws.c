@@ -6,12 +6,11 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:42:22 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 17:45:04 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/17 14:20:25 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
 #include <sys/time.h>
 
 unsigned int	get_texture_color(t_texture *texture, int x, int y)

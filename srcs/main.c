@@ -11,11 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
 
 t_global	*gg(void)
 {

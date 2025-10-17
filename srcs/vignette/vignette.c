@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vignette.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:25:22 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/16 17:56:22 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/17 14:18:51 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
-#include <stdlib.h>
 
 int	darken_color(int color, float factor)
 {
