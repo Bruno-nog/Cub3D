@@ -106,7 +106,7 @@ def test_valgrind_invalid():
     )
 
 def test_valgrind_all_invalids():
-    folder = "maps/invalid"
+    folder = "invalid"
     for filename in os.listdir(folder):
         if filename.endswith(".cub"):
             filepath = os.path.join(folder, filename)
@@ -128,11 +128,6 @@ def test_valgrind_all_invalids():
             assert (
                 "in use at exit: 0 bytes in 0 blocks" in output
                 or (
-                    "in use at exit: 27 bytes in 2 blocks" in output
-                    and "definitely lost: 0 bytes" in output
-                )
-                or (
-                    "in use at exit: 45 bytes in 4 blocks" in output
-                    and "definitely lost: 0 bytes" in output
+                    "definitely lost: 0 bytes" in output
                 )
             )

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:59:16 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/16 17:15:34 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/17 13:48:35 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	rgb_errors_type(int type_error, char **split)
 	}
 	else if (type_error == 3)
 	{
-		ft_putstr("Error: RGB values must be numbers.\n");
+		ft_putstr("Error: Path or something else is wrong.\n");
 		ft_free_split(split);
 		return (2);
 	}
