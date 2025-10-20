@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/20 13:50:26 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:51:02 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,13 @@ int	exit_game(t_game *game)
 	free(game->map_tex.ea);
 	exit(0);
 	return (0);
-}
+}: Error!
+Error: BRACE_SHOULD_EOL     (line:  92, col:   1):	Expected newline after brace
+struct.h: OK!
+cub3d.h: OK!
+ft_lstclear.c: OK!
+ft_strncmp.c: OK!
+
 
 void	free_game(t_game *game)
 {
