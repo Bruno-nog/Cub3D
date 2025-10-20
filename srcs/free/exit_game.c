@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:51:04 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/15 17:02:46 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:50:26 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,13 @@ int	exit_game(t_game *game)
 	free(game->map_tex.ea);
 	exit(0);
 	return (0);
+}
+
+void	free_game(t_game *game)
+{
+	if (game->mlx)
+	{
+		free_mlx(game);
+		game->mlx = NULL;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:03:25 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/17 14:19:53 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:31:17 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@
 static bool	verify_type_file(char *av)
 {
 	int		i;
-	char	*correct_file;
-	size_t	argument_len;
+	char	*cub;
+	size_t	len;
 
-	argument_len = ft_strlen(&av[1]);
-	correct_file = ".cub";
+	len = ft_strlen(&av[1]);
+	cub = ".cub";
 	i = 0;
-	if (ft_strnstr(&av[1], correct_file, argument_len))
+	if (len < 4)
+		return (false);
+	if (ft_strncmp(av, cub, len - 4))
+	{
 		return (true);
+	}
 	return (false);
 }
 

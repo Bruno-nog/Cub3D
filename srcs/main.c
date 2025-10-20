@@ -26,21 +26,27 @@ static bool	verify_argument(int ac)
 		ft_putstr("Error: Missing arguments\n");
 		return (false);
 	}
+	else if (ac > 2)
+	{
+		ft_putstr("Error: Cannot support more\n");
+		return (false);
+	}
 	return (true);
 }
 
 int	main(int ac, char **av)
 {
 	t_game	game;
-	bool	is_cub;
 
 	if (!verify_argument(ac))
 		return (0);
-	is_cub = main_parser(av[1]);
-	if (!is_cub)
+	if (!main_parser(av[1]))
 		return (0);
 	if (!init_game(&game, av[1]))
+	{
+		free_game(&game);
 		return (0);
+	}
 	gg()->game = game;
 	init_player(&game.player);
 	load_all_textures(&game);

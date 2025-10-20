@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratanaka <ratanaka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:21:37 by ratanaka          #+#    #+#             */
-/*   Updated: 2025/10/16 18:38:53 by ratanaka         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:48:42 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void			free_vignette(t_game *game);
 void			destroy_textures(t_game *game);
 int				exit_game(t_game *game);
 int				exit_error(t_game *game, int map, int map_text);
+void			free_game(t_game *game);
 
 /* --- main --- */
 t_global		*gg(void);
