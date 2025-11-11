@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 17:49:37 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/13 19:15:40 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:07:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ void	draw_vision(t_game *game, float ray_x, float ray_y, int i)
 
 static void	select_wall_texture(t_game *game, t_rayinfo *ray, int i)
 {
-	int		side;
 	int		texture_index;
 
 	if ((int)((ray->ray_x - ray->cos_angle) / BLK) != (int)(ray->ray_x / BLK))
 	{
-		side = 1;
 		if (ray->cos_angle > 0)
 			texture_index = 2;
 		else
@@ -46,7 +44,6 @@ static void	select_wall_texture(t_game *game, t_rayinfo *ray, int i)
 	}
 	else
 	{
-		side = 0;
 		if (ray->sin_angle > 0)
 			texture_index = 1;
 		else

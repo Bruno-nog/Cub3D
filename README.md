@@ -1,6 +1,8 @@
-# Cub3D — Projeto pessoal
+# Cub3D
 
 Este repositório contém uma implementação pessoal do projeto Cub3D (raycaster estilo Wolfenstein) construída para o ambiente de 42. O objetivo aqui foi entregar um motor simples de raycasting com parsing do formato `.cub`, carregamento de texturas XPM e algumas melhorias/recursos específicos do meu fork.
+
+![crazy8 gif](assets/gif/crazy8.gif)
 
 ## Destaques deste fork
 

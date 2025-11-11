@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:03:25 by brunogue          #+#    #+#             */
-/*   Updated: 2025/10/20 13:31:17 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:08:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 
 static bool	verify_type_file(char *av)
 {
-	int		i;
 	char	*cub;
 	size_t	len;
 
 	len = ft_strlen(&av[1]);
 	cub = ".cub";
-	i = 0;
 	if (len < 4)
 		return (false);
 	if (ft_strncmp(av, cub, len - 4))
